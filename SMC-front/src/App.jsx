@@ -1,13 +1,22 @@
-import { useState } from 'react'
 import './App.css'
 
-import Box from '@mui/material/Box';
-import Navbar from './components/Navbar/Navbar';
+// pages
+import ContactPage from './pages/ContactPage';
+import LoginPage from './pages/LoginPage';
+import LandingPage from './pages/LandingPage';
 
+// components
+import Navbar from './components/Navbar/Navbar';
+import Footer from './components/Footer/Footer';
+
+// react
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
+// context
 import {AuthenticationProvider} from './hooks/useAuth'
-import ContactPage from './pages/ContactPage';
+
+
+
 
 function App() {
 
@@ -19,11 +28,17 @@ function App() {
       {/* // we give user, user is sendingg to Authentication provider, and then is set as authDate (useState) */}
       <AuthenticationProvider user = {user}>  {/* everything below are children */}
         <> 
+          
           <Navbar/>
+
           <Routes> 
+            <Route path='/' element={<LandingPage/>} />  
             <Route path='contact/' element={<ContactPage/>} />
+            <Route path='login/' element={<LoginPage/>} />
             
           </Routes>
+
+          <Footer/>
         </>
       </AuthenticationProvider>
     </BrowserRouter>
