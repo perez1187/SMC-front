@@ -4,7 +4,10 @@ import './App.css'
 import Box from '@mui/material/Box';
 import Navbar from './components/Navbar/Navbar';
 
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+
 import {AuthenticationProvider} from './hooks/useAuth'
+import ContactPage from './pages/ContactPage';
 
 function App() {
 
@@ -12,13 +15,18 @@ function App() {
   const user = JSON.parse(localStorage.getItem('smc-user') )
 
   return (
-    // we give user, user is sendingg to Authentication provider, and then is set as authDate (useState)
-    <AuthenticationProvider user = {user}>  {/* everything below are children */}
-       <Box> 
-        <h1> chuh </h1>
-        <Navbar/>
-      </Box>
-    </AuthenticationProvider>
+    <BrowserRouter>
+      {/* // we give user, user is sendingg to Authentication provider, and then is set as authDate (useState) */}
+      <AuthenticationProvider user = {user}>  {/* everything below are children */}
+        <> 
+          <Navbar/>
+          <Routes> 
+            <Route path='contact/' element={<ContactPage/>} />
+            
+          </Routes>
+        </>
+      </AuthenticationProvider>
+    </BrowserRouter>
   )
 }
 
