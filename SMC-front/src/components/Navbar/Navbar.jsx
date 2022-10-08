@@ -6,6 +6,12 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LockIcon from '@mui/icons-material/Lock';
 import { useState } from 'react';
 
+// local
+import { auth } from '../../services/user-services'
+
+// using context
+import {useAuth} from '../../hooks/useAuth'
+
 function Navbar() {
     //how to fetch data from backend
     // useEffect(()=> {
@@ -23,14 +29,28 @@ function Navbar() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
+    // useStates for context
+    const {authData, setAuth} =useAuth()
+
     // function for login
     const handleSubmit = async e => {
       e.preventDefault() // we are not going to refresh the page
-      console.log(username, password)
+      
+      // we can use shortcur if key and value is the same{username,  password}
+      const data = await auth( {'email':username, 'password': password}) 
+      // console.log(data)
+
+
+
+      // we get back email and token from api and set as context
+      setAuth(data)
     }
 
   return (
     <div>
+      {/* this below will show auth data form context */}
+      {authData && <p>{authData.email}</p> }
+
       <form onSubmit={handleSubmit}>
         <TextField
           id="input-with-icon-textfield"
