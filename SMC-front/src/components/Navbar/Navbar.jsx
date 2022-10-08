@@ -49,39 +49,45 @@ function Navbar() {
   return (
     <div>
       {/* this below will show auth data form context */}
-      {authData && <p>{authData.email}</p> }
+      {/* if there are no authData, show login/pass form, if there are, show email*/}
+      
+      {!authData ? 
 
-      <form onSubmit={handleSubmit}>
-        <TextField
-          id="input-with-icon-textfield"
-          label="Login"
-          onChange={ e => setUsername(e.target.value)}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <AccountCircleIcon />
-              </InputAdornment>
-            ),
-          }}
-          variant="standard"
-        />
-        <TextField
-          id="input-password"
-          label="Password"
-          onChange={ e => setPassword(e.target.value)}
-          type="password"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <LockIcon />
-              </InputAdornment>
-            ),
-          }}
-          variant="standard"
-        />
-        <Button variant="outlined" type='submit'>Login</Button>
-      </form>
-
+        <form onSubmit={handleSubmit}>
+          <TextField
+            id="input-with-icon-textfield"
+            label="Login"
+            onChange={ e => setUsername(e.target.value)}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <AccountCircleIcon />
+                </InputAdornment>
+              ),
+            }}
+            variant="standard"
+          />
+          <TextField
+            id="input-password"
+            label="Password"
+            onChange={ e => setPassword(e.target.value)}
+            type="password"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <LockIcon />
+                </InputAdornment>
+              ),
+            }}
+            variant="standard"
+          />
+          <Button variant="outlined" type='submit'>Login</Button>
+        </form>
+      
+      :
+   
+      <p>{authData.email}</p>   
+    }
 
     </div>
   )
