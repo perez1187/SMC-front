@@ -4,6 +4,7 @@ import './App.css'
 import ContactPage from './pages/ContactPage';
 import LoginPage from './pages/LoginPage';
 import LandingPage from './pages/LandingPage';
+import RegisterPage from './pages/RegisterPage';
 
 // components
 import Navbar from './components/Navbar/Navbar';
@@ -14,6 +15,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 // context
 import {AuthenticationProvider} from './hooks/useAuth'
+
 
 
 
@@ -35,6 +37,7 @@ function App() {
             <Route path='/' element={<LandingPage/>} />  
             <Route path='contact/' element={<ContactPage/>} />
             <Route path='login/' element={<LoginPage/>} />
+            <Route path='register/' element={<RegisterPage/>} />
             
           </Routes>
 

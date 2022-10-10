@@ -1,15 +1,24 @@
 import React from 'react'
+import { useNavigate } from "react-router-dom";
 
 //mui
 import { Typography } from '@mui/material'
 import PetsIcon from '@mui/icons-material/Pets';
 
 function LogoNavbar() {
+    
+    
+    // 👇️ navigate to /
+    const navigate = useNavigate();
+
+    const navigateLandingPage = () => {           
+        navigate('/');          
+                };
   return (
               
-    <> 
+    <div onClick={() => navigateLandingPage()}> 
         <Typography 
-            variant='h6'         
+            variant='h6'                   
             sx={{
 
             display:{
@@ -28,7 +37,7 @@ function LogoNavbar() {
                     xs:"block",
                     sm:"none"
             }}}/>
-    </>
+    </div>
   )
 }
 

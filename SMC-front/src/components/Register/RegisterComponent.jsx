@@ -17,7 +17,7 @@ import { useNavigate } from "react-router-dom";
 
 // this function is called on loginf page
 
-function LoginFront() {
+function RegisterComponent() {
 
     const navigate = useNavigate();
 
@@ -42,8 +42,6 @@ function LoginFront() {
     
         // useStates for context
         const {authData, setAuth} =useAuth()
-
-        
     
         // function for login
         const handleSubmit = async e => {
@@ -60,22 +58,10 @@ function LoginFront() {
     
           // we get back email and token from api in data
           // and if we have data.emai (login succes) we set as context and move to landing page
-          // varables for loggind
           try {
             if (data.email) {
-                if (data.email == 'This field may not be blank.') {
-                    // console.log("chujjjj nie pusty")
-                } else if (data.password == 'This field may not be blank.'){
-                    
-                }
-                else if (data.email == 'Enter a valid email address.'){
-                    
-                }
-                else {
-                    await setAuth(data)
-                    await navigateHome() 
-                }
-
+                await setAuth(data)
+                await navigateHome() 
             }
 
             } catch (e) {
@@ -160,7 +146,7 @@ function LoginFront() {
                             padding:"10px"
 
                         }}>  
-                        <Button variant="outlined" type='submit'>Login</Button>
+                        <Button variant="outlined" type='submit'>Register</Button>
                         {loginNotSuccess &&
                         <p style={{
                             color: "red"
@@ -183,4 +169,4 @@ function LoginFront() {
   )
 }
 
-export default LoginFront
+export default RegisterComponent
