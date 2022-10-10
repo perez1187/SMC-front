@@ -41,6 +41,7 @@ function UserBoxNavbarLogin() {
         //backgroundColor: "white",
     }))
 
+    // logout function
     const logout = () => {
         setAuth(null)
     }

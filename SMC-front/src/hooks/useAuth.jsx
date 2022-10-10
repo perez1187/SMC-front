@@ -12,7 +12,8 @@ export const AuthenticationProvider = ( {user, children}) => {
     // custom function, where we set data to local storage
     const setAuth = newUser => {
         if (newUser) {
-            localStorage.setItem('smc-user', JSON.stringify(newUser)) 
+            localStorage.setItem('smc-user', JSON.stringify(newUser))
+            // console.log(newUser.email) 
         } else {
             localStorage.removeItem('smc-user') 
         }

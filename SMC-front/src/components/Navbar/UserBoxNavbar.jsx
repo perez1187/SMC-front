@@ -29,3 +29,7 @@ function UserBoxNavbar() {
 }
 
 export default UserBoxNavbar
+
+// if you want to show authData when you have authData
+// you can do it in any component
+// {authData && <h3> {authData.email} </h3>}
