@@ -30,8 +30,12 @@ function Navbar() {
       >
         {/* instead of toolbar we use Styledtoolbar that we overwrite toolbar */}
         <StyledToolbar>
+
+          {/* Logo component */}
           <LogoNavbar />
-          <UserBoxNavbar />
+
+          {/* login/logout/user menu */}
+          <UserBoxNavbar /> 
         </StyledToolbar>
       </AppBar>
 

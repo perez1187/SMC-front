@@ -1,5 +1,5 @@
 import React from 'react'
-import LoginFront from '../components/Navbar/LoginFront'
+import LoginFront from '../components/LoginComponent/LoginFront'
 
 // components
 

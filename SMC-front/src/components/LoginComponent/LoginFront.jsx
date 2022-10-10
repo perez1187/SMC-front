@@ -14,6 +14,8 @@ import {useAuth} from '../../hooks/useAuth'
 import Login from './LoginFront';
 
 
+// this function is called on loginf page
+
 function LoginFront() {
 
         //how to fetch data from backend
@@ -52,6 +54,7 @@ function LoginFront() {
   return (
     <div>
             {/* this below will show auth data form context */}
+            {/* authData is user from App.jsx */}
             {/* if there are no authData, show login/pass form, if there are, show email*/}
         {!authData ? 
 
