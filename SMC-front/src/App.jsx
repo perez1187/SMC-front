@@ -15,6 +15,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 // context
 import {AuthenticationProvider} from './hooks/useAuth'
+import ActivatePage from './pages/ActivatePage';
 
 
 
@@ -38,7 +39,7 @@ function App() {
             <Route path='contact/' element={<ContactPage/>} />
             <Route path='login/' element={<LoginPage/>} />
             <Route path='register/' element={<RegisterPage/>} />
-            
+            <Route path='activate/' element={<ActivatePage/>} />            
           </Routes>
 
           <Footer/>
