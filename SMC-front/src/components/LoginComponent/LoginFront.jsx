@@ -1,9 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
+import { Link, useNavigate } from "react-router-dom";
+
+//MUI
 import { InputAdornment, TextField, Button, Box } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LockIcon from '@mui/icons-material/Lock';
-import { useState } from 'react';
-
 
 // local
 import { auth } from '../../services/user-services'
@@ -11,29 +12,17 @@ import { auth } from '../../services/user-services'
 // using context
 import {useAuth} from '../../hooks/useAuth'
 
-
-import { useNavigate } from "react-router-dom";
-
+// css
+import './LoginFront.css'
 
 // this function is called on loginf page
 
 function LoginFront() {
 
     const navigate = useNavigate();
-
-        //how to fetch data from backend
-        // useEffect(()=> {
-        //     const getData = async () => {
-        //         await fetch('http://127.0.0.1:8000/profile-owner/profiles3/')
-        //         .then(resp => resp.json())
-        //         .then( data => {
-        //             console.log(data)
-        //         })
-        //     }
-        //     getData();
-        // }, [])
-
-
+    // const navigateForgotPasswordPage = () => {
+    //     navigate('forgot-password/'); 
+    // }
 
         // useStates for login
         const [username, setUsername] = useState('')
@@ -42,21 +31,20 @@ function LoginFront() {
     
         // useStates for context
         const {authData, setAuth} =useAuth()
-
-        
-    
+           
         // function for login
         const handleSubmit = async e => {
           e.preventDefault() // we are not going to refresh the page
           
-          // we can use shortcur if key and value is the same{username,  password}
-          const data = await auth( {'email':username, 'password': password}) 
-          console.log(data.email)
-            
-          // 👇️ navigate to /
-          const navigateHome = async () => {           
-                navigate('/');          
-                      };    
+        // we can use shortcur if key and value is the same{username,  password}
+        const data = await auth( {'email':username, 'password': password}) 
+        console.log(data.email)
+        
+        // 👇️ navigate to /
+        const navigateHome = async () => {           
+            navigate('/');          
+                    };
+
     
           // we get back email and token from api in data
           // and if we have data.emai (login succes) we set as context and move to landing page
@@ -83,12 +71,8 @@ function LoginFront() {
             
             // tutaj dac use state
             }
-            setLoginNotSuccess(true) 
-        // redirect 
- 
+            setLoginNotSuccess(true)           
           
-          
-
         }
   return (
     <div style={{
@@ -159,8 +143,15 @@ function LoginFront() {
                             alignItems:"center",
                             padding:"10px"
 
-                        }}>  
-                        <Button variant="outlined" type='submit'>Login</Button>
+                        }}>
+                        <div> 
+                            <Button variant="outlined" type='submit'>Login</Button>
+                        </div>      
+                        <div >
+                            {/* <p className='forgotPassword' onClick={() => navigateForgotPasswordPage()}> Forgot Password </p> */}
+                            <Link to={"/forgot-password/"} className='forgotPassword' >Forgot password</Link>
+                        </div>
+                        
                         {loginNotSuccess &&
                         <p style={{
                             color: "red"

@@ -5,6 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { Typography } from '@mui/material'
 import PetsIcon from '@mui/icons-material/Pets';
 
+// logo
+import logo from "../../assets/smclogo.svg"
+import './LogoNavbar.css'
+
 function LogoNavbar() {
     
     
@@ -14,10 +18,13 @@ function LogoNavbar() {
     const navigateLandingPage = () => {           
         navigate('/');          
                 };
+    function Logo () {
+        return <img src={logo} alt="Logo" />
+    }
   return (
               
-    <div onClick={() => navigateLandingPage()}> 
-        <Typography 
+    <div onClick={() => navigateLandingPage()} className = "Logo"> 
+        {/* <Typography 
             variant='h6'                   
             sx={{
 
@@ -26,15 +33,20 @@ function LogoNavbar() {
                 sm:"block"
             }
         }}>
-            Sharp Mind Club
-        </Typography> 
+            Sharp Mind Club <img src={logo} alt="Logo" />
+            
+        </Typography>  */}
+        <div>
+        <img src={logo} alt="React Logo" />
+        </div>
         
         <PetsIcon             
             sx={{
             // display on difrent resolutions
             //here on mobile
                 display:{
-                    xs:"block",
+                    
+                    xs:"none", // block will show
                     sm:"none"
             }}}/>
     </div>

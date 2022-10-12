@@ -1,0 +1,8 @@
+.Logo {
+    /* background-image: url(../../assets/smclogo.svg); */
+    width: 330px;
+}
+
+.Logo:hover{
+    width: 350px;
+}
