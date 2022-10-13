@@ -59,3 +59,18 @@ export function requestPasswordResetEmail(userData) {
         console.log(e)
     })
 }
+
+//reset password complete
+export function resetPassword(userData) {
+    return fetch('http://127.0.0.1:8000/auth/password-reset-complete/', {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userData)
+    }
+    ).then(resp => resp.json())
+    .catch( e => {
+        console.log(e)
+    })
+}
