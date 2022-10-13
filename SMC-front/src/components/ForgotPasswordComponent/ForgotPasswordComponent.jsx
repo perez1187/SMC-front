@@ -19,12 +19,14 @@ function ForgotPasswordComponent() {
 
     // usestates
     const [username, setUsername] = useState('')
+    const [emailSent, setEmailSent] = useState(false)
 
     // function for request reset password
     const handleSubmit = async e => {
         e.preventDefault() // we are not going to refresh the page
         const data = await requestPasswordResetEmail( {'email':username}) 
-        console.log(data.email)
+        console.log(data)
+        setEmailSent(true)
     }
 
   return (
@@ -70,9 +72,12 @@ function ForgotPasswordComponent() {
                         }}>
                         <div> 
                             <Button variant="outlined" type='submit'>Reset Password</Button>
-                        </div>                             
+                        </div>                                                   
 
                     </Box>
+                    { emailSent && 
+                    <p style={{color:"red"}}> We have sent you an email with a link to reset your password</p>
+                }
                 </form>
             </Box>
 

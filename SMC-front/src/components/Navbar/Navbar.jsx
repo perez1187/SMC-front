@@ -18,11 +18,8 @@ const StyledToolbar = styled(Toolbar) ({
     padding:"0"
 })
 
-
 function Navbar() {
-
-
-  
+ 
   return (
     <>
       <AppBar
