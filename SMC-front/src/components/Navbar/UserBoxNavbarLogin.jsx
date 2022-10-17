@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 // using context
 import {useAuth} from '../../hooks/useAuth'
 
@@ -10,7 +10,14 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import { AppBar, styled, Toolbar, Typography, Box, InputBase, Badge, Avatar, Menu, MenuItem,Button }  from '@mui/material'
 
+
+
 function UserBoxNavbarLogin() {
+
+    const navigate = useNavigate();
+    const navigateMyProfile = () => {           
+    navigate('myprofile/');          
+            };
 
     // menu r
     const [open, setOpen] = useState(false)
@@ -83,13 +90,13 @@ function UserBoxNavbarLogin() {
                     src="https://images.pexels.com/photos/846741/pexels-photo-846741.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                     
                 />
-                <Typography variant='span'>            
+                {/* <Typography variant='span'>            
                     {!authData ? 
                         <p> login</p>  
                         :
                         <p>{authData.email}</p>
                     }
-                </Typography>
+                </Typography> */}
             </UserBoxMobile>
             
             {/* Logout Box */}
@@ -123,9 +130,9 @@ function UserBoxNavbarLogin() {
             horizontal: 'left',
             }}
         >
-            <MenuItem >Profile</MenuItem>
+            <MenuItem onClick={()=> navigateMyProfile()} >My Profile</MenuItem>
             <MenuItem >My account</MenuItem>
-            <MenuItem >Logout</MenuItem>
+            <MenuItem onClick={()=> logout()} >Logout</MenuItem>
         </Menu>
     </>
   )

@@ -8,6 +8,7 @@ import RegisterPage from './pages/RegisterPage';
 import ActivatePage from './pages/ActivatePage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ChangeForgotPasswordPage from './pages/ChangeForgotPasswordPage';
+import UserProfile from './pages/UserProfile';
 
 // components
 import Navbar from './components/Navbar/Navbar';
@@ -18,6 +19,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 // context
 import {AuthenticationProvider} from './hooks/useAuth'
+
 
 
 
@@ -45,7 +47,8 @@ function App() {
             <Route path='register/' element={<RegisterPage/>} />
             <Route path='activate/' element={<ActivatePage/>} /> 
             <Route path='forgot-password/' element={<ForgotPasswordPage/>} /> 
-            <Route path='change-forgot-password/' element={<ChangeForgotPasswordPage/>} />          
+            <Route path='change-forgot-password/' element={<ChangeForgotPasswordPage/>} />
+            <Route path='myprofile/' element={<UserProfile/>} />           
           </Routes>
 
           <Footer/>
