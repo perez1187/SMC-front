@@ -19,6 +19,7 @@ function ChangeForgotPasswordComponent() {
     const [resetPasswordNotSuccess, setResetPasswordNotSuccess] = useState(false)
     const [resetErrorMessage, setResetErrorMessage] = useState('')
 
+
     // reset input
     const passwordInput = React.useRef(null);
     const confirmPasswordInput = React.useRef(null);
@@ -37,7 +38,7 @@ function ChangeForgotPasswordComponent() {
     }
     
 // wha I need to catch(errors)
-// detail:"The reset link is invalid"
+
 // success:true  message:"Password reset success"
 // uidb64:['This field may not be null.'
 
@@ -53,11 +54,22 @@ function ChangeForgotPasswordComponent() {
                 if (data.password == "This field may not be blank.") {
                     setResetPasswordNotSuccess(true)
                     setResetErrorMessage(data.password)
-                }         
+                }
+                if (data.detail == "The reset link is invalid") {
+                    setResetPasswordNotSuccess(true)
+                    setResetErrorMessage(data.detail)
+                }
+                if (data.success == true) {
+                    setResetPasswordNotSuccess(true)
+                    setResetErrorMessage(data.message)
+                    passwordInput.current.value = ""
+                    confirmPasswordInput.current.value = ""
+                    
+                }               
             }
         } else {
             setResetPasswordNotSuccess(true)
-            setResetErrorMessage("password doesnt match")
+            setResetErrorMessage("password do not match")
         }
     }
 
@@ -75,7 +87,7 @@ function ChangeForgotPasswordComponent() {
                 {/* this below will show auth data form context */}
                 {/* authData is user from App.jsx */}
                 {/* if there are no authData, show login/pass form, if there are, show email*/}
-            {!authData ? 
+            {(!authData) ? 
                 <Box >  
                     
                     <form onSubmit={handleSubmit}>
