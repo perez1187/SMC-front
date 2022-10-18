@@ -1,4 +1,7 @@
 import React from 'react'
+// using context
+import {useAuth} from '../hooks/useAuth'
+
 
 //login function
 export function auth(credentials) {
@@ -74,3 +77,24 @@ export function resetPassword(userData) {
         console.log(e)
     })
 }
+
+// refresh access token
+export function refreshAccessToken(refreshToken) {
+    // const {authData, setAuth} =useAuth()
+
+    const testWrongRefresh = 'abc'
+
+    return fetch('http://127.0.0.1:8000/auth/token/refresh/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({"refresh":refreshToken})
+    }
+    ).then(resp => resp.json())
+    .catch( e => {
+        console.log(e)
+    })
+}
+
+
