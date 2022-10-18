@@ -36,11 +36,6 @@ function ChangeForgotPasswordComponent() {
     const passMatch = () => {
         return password === confrimPassword
     }
-    
-// wha I need to catch(errors)
-
-// success:true  message:"Password reset success"
-// uidb64:['This field may not be null.'
 
     // function after clicking reset password button
     const handleSubmit = async e => {

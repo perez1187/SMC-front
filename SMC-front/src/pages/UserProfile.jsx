@@ -1,8 +1,9 @@
 import React from 'react'
+import UserProfilesComponent from '../components/UserProfilesComponent/UserProfilesComponent'
 
 function UserProfile() {
   return (
-    <div>UserProfile</div>
+    <div><UserProfilesComponent/></div>
   )
 }
 

@@ -16,7 +16,8 @@ function UserBoxNavbarLogin() {
 
     const navigate = useNavigate();
     const navigateMyProfile = () => {           
-    navigate('myprofile/');          
+    navigate('myprofile/');   
+    setOpen(false)       
             };
 
     // menu r
