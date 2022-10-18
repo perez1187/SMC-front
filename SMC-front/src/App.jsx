@@ -19,6 +19,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 // context
 import {AuthenticationProvider} from './hooks/useAuth'
+import InstructorsPage from './pages/InstructorsPage';
 
 
 
@@ -41,14 +42,20 @@ function App() {
           <Navbar/>
 
           <Routes> 
-            <Route path='/' element={<LandingPage/>} />  
-            <Route path='contact/' element={<ContactPage/>} />
+            <Route path='/' element={<LandingPage/>} />              
+
+            {/* user pages */}
             <Route path='login/' element={<LoginPage/>} />
             <Route path='register/' element={<RegisterPage/>} />
             <Route path='activate/' element={<ActivatePage/>} /> 
             <Route path='forgot-password/' element={<ForgotPasswordPage/>} /> 
             <Route path='change-forgot-password/' element={<ChangeForgotPasswordPage/>} />
-            <Route path='myprofile/' element={<UserProfile/>} />           
+            <Route path='myprofile/' element={<UserProfile/>} /> 
+
+            {/* main pages  */}
+            <Route path='contact/' element={<ContactPage/>} />
+            <Route path='instructors/' element={<InstructorsPage/>} />
+
           </Routes>
 
           <Footer/>

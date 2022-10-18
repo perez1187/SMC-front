@@ -1,0 +1,19 @@
+.InstructorSection {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background-color: aqua;
+    flex-wrap: wrap;
+}
+
+.InstructorProfileBox{
+    /* position: absolute; */
+    width: 350px;
+    height: 400px;
+    background-color: red;
+    margin: 10px;
+    /* display: flex;
+    flex-direction: column; */
+    /* left: 300px;
+    top: 250px; */
+}

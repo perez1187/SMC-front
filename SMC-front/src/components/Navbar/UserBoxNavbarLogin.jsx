@@ -14,12 +14,18 @@ import { AppBar, styled, Toolbar, Typography, Box, InputBase, Badge, Avatar, Men
 
 function UserBoxNavbarLogin() {
 
+    // navigate
     const navigate = useNavigate();
+    
     const navigateMyProfile = () => {           
-    navigate('myprofile/');   
-    setOpen(false)       
+        navigate('myprofile/');   
+        setOpen(false)       
             };
 
+    const navigateInstructors = () => {           
+        navigate('instructors/');              
+            };
+    
     // menu r
     const [open, setOpen] = useState(false)
 
@@ -68,6 +74,7 @@ function UserBoxNavbarLogin() {
                 <Badge badgeContent={4} color="error">
                     <NotificationsNoneIcon />
                 </Badge> */}
+                <Button variant="contained" onClick={() => navigateInstructors()}>Instructors</Button>
                 <Avatar 
                     sx={{ width: 30, height: 30 }}
                     src="https://images.pexels.com/photos/846741/pexels-photo-846741.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"

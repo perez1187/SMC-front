@@ -86,7 +86,7 @@ export default function UserProfilesComponent() {
     }
 
   return (
-    <div> settings etc 
+    <div> settings 
         Your Profiles 
         <div>{RenderProfiles()} </div>
     </div>
