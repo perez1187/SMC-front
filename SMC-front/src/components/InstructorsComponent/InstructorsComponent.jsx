@@ -6,6 +6,10 @@ import { fetchInstructorProfiles } from '../../services/InstructorServices'
 // css
 import './InstructorComponent.css'
 
+// social icons
+import FbICon from '../../assets/socialIcons/Facebook-logo.png'
+import { display } from '@mui/system'
+
 function InstructorsComponent() {
 
     // lokal useStates
@@ -67,7 +71,11 @@ function InstructorsComponent() {
                             </div> {/*InstructorProfileBoxBoxName  */}
 
                         </div>{/* InstructorProfileBoxPersonalData */}
-                        <div> social media links</div>
+                        <div> social media links
+                            <img src={FbICon} alt = "FBIcon" style={{   width: "40px", height: "30px", display: "none"}} />
+                        </div>
+
+                        <div style={{display: "none"}}> my link</div>
                         <div> cena za konsultacje 100 pln /h</div>
                         <div> treningi online: tak treningi na żywo: nie</div>
                         <div> jezyki; polski angielski</div>
