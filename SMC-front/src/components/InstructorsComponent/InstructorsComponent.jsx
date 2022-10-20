@@ -7,8 +7,13 @@ import { fetchInstructorProfiles } from '../../services/InstructorServices'
 import './InstructorComponent.css'
 
 // social icons
-import FbICon from '../../assets/socialIcons/Facebook-logo.png'
-import { display } from '@mui/system'
+import FbICon from '../../assets/socialIcons/facebookIcon.png'
+import InstagramIcon from '../../assets/socialIcons/instagramIcon.png'
+import LinkedinIcon from '../../assets/socialIcons/linkedinIcon.png'
+import LichessIcon from '../../assets/socialIcons/lichessIcon.png'
+import TwitterIcon from '../../assets/socialIcons/twitterIcon.png'
+import ChesscomIcon from '../../assets/socialIcons/chesscomIcon.png'
+import EmailIcon from '../../assets/socialIcons/emailIcon.png'
 
 function InstructorsComponent() {
 
@@ -71,8 +76,14 @@ function InstructorsComponent() {
                             </div> {/*InstructorProfileBoxBoxName  */}
 
                         </div>{/* InstructorProfileBoxPersonalData */}
-                        <div> social media links
-                            <img src={FbICon} alt = "FBIcon" style={{   width: "40px", height: "30px", display: "none"}} />
+                        <div className='InstructorProfileBoxSMBox'>
+                            <img className='InstructorProfileBoxSMBoxIcon' src={InstagramIcon} alt = "FBIcon" style={{ display: "display"}} />
+                            <img className='InstructorProfileBoxSMBoxIcon' src={LichessIcon} alt = "FBIcon" style={{display: "display"}} />
+                            <img className='InstructorProfileBoxSMBoxIcon' src={FbICon} alt = "FBIcon" style={{display: "display"}} />
+                            <img className='InstructorProfileBoxSMBoxIcon' src={LinkedinIcon} alt = "FBIcon" style={{ display: "display"}} />
+                            <img className='InstructorProfileBoxSMBoxIcon' src={ChesscomIcon} alt = "FBIcon" style={{display: "display"}} />
+                            <img className='InstructorProfileBoxSMBoxIcon' src={TwitterIcon} alt = "FBIcon" style={{display: "display"}} />
+                            <img className='InstructorProfileBoxSMBoxIcon' src={EmailIcon} alt = "FBIcon" style={{display: "display"}} />
                         </div>
 
                         <div style={{display: "none"}}> my link</div>
