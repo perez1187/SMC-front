@@ -22,12 +22,6 @@ import {AuthenticationProvider} from './hooks/useAuth'
 import InstructorsPage from './pages/InstructorsPage';
 
 
-
-
-
-
-
-
 function App() {
 
   // we check auth data from local storage and put it as an object to user

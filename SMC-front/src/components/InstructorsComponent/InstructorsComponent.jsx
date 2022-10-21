@@ -38,6 +38,58 @@ function InstructorsComponent() {
 
     function RenderInstructorProfiles(){
         // const testProf = fetchedUserProfilesData.filter()
+
+        function findInstructorTitle(id){
+            let object = {}
+
+            // we check if object exist
+            try{
+                object = fetchedInstructorProfilesData.find(obj => obj.id === id)
+            } catch(e) {
+                return (console.log("wrong id"))
+            } 
+
+            // we check if the instructor is chess_instructor
+            if (object.profile_type == "chess_instructor") {
+                try {
+                    const chess_title  = object.chess_profile.chess_title
+                    
+                    // if wrong json
+                    if (chess_title == undefined) {  
+                        console.log("wrong json for chess tilte for profile id " + object.id)                      
+                        return ("")
+                    }
+
+                    return (chess_title)
+                }catch (e) {
+                    console.log(e)
+                    return ("")
+                }
+            } 
+            // we check if the instructor is draughts_instructor (remember profile calls checkers_profile)
+            if (object.profile_type == "draughts_instructor") {
+                try {
+                    const draughts_title  = object.checkers_profile.draughts_title
+                    
+                    // if wrong json
+                    if (draughts_title == undefined) {  
+                        console.log("wrong json for draughts tilte for profile id " + object.id)                      
+                        return ("")
+                    }
+
+                    return (draughts_title)
+                }catch (e) {
+                    console.log(e)
+                    return ("")
+                }
+            }             
+            
+        }
+
+        function title(id){
+                // console.log(fetchedInstructorProfilesData.id)
+            return "chuj"
+        }
         const listProfiles = fetchedInstructorProfilesData.map(
             (element) => {
                 return (
@@ -53,15 +105,14 @@ function InstructorsComponent() {
                                     backgroundSize:"cover" 
                                     }} ></div>
                                 <div className='InstructorProfileBoxCountryFlag'  style={{
-                                    backgroundImage: `url('https://flagcdn.com/40x30/pl.png')`,
+                                    backgroundImage: `url('https://flagcdn.com/40x30/${element.country}.png')`,
                                     backgroundRepeat:"no-repeat",
                                     backgroundSize:"cover" 
                                     }} ></div>
-                                <div className='InstructorProfileBoxTypeOfGame'> Chess </div> {/* type of game */}
+                                
                             </div>{/* avatar and country flag */}
 
-      
-
+                            <div className='InstructorProfileBoxTypeOfGame'> Chess {findInstructorTitle(element.id)} </div> {/* type of game */}
 
                         </div>{/* InstructorProfileBoxPersonalData */}
    
