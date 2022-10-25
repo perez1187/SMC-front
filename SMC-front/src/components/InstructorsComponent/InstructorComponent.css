@@ -59,3 +59,71 @@
     /* border-end-end-radius: 20px; */
     
 }
+
+.ICInstructorData{
+    display: flex;
+    flex-direction: column;
+}
+
+.ICInstructorTitleName{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+    margin-top: 35px;
+    margin-left: 17px;
+
+}
+
+.ICInstructorTitle{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 30px;
+
+    margin-right: 10px;
+
+    color: #FFFFFF;
+}
+
+.ICInstructorName{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 38px;
+
+    margin-right: 5px;
+
+    color: #FFFFFF;
+}
+
+.ICInstructorTypeOFGame {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 30px;
+    /* identical to box height */
+    margin-left: 17px;
+
+    color: #FFFFFF;
+}
+
+.ICInstructorRankingBox{
+    
+}
+
+.ICInstructorCRdef{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 26px;
+    /* identical to box height */
+    margin-left: 17px;
+    
+    
+    color: #FFFFFF; 
+}

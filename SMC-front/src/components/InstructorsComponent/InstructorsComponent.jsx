@@ -86,10 +86,30 @@ function InstructorsComponent() {
             
         }
 
-        function title(id){
-                // console.log(fetchedInstructorProfilesData.id)
-            return "chuj"
+        function FindInstructorTypeOfGame(id){
+            let object = {}
+            // console.log("wszedlem w funkcje")
+            // we check if object exist
+            try{
+                object = fetchedInstructorProfilesData.find(obj => obj.id === id)
+            } catch(e) {
+                return (console.log("wrong id"))
+            } 
+
+            // we check if the instructor is chess_instructor
+            if (object.profile_type == "chess_instructor") {
+                // console.log("yes")
+                // const typeOfGame  = "Chess"
+                return ("Chess Instructor")
+
+            } 
+            // we check if the instructor is draughts_instructor (remember profile calls checkers_profile)
+            if (object.profile_type == "draughts_instructor") {
+                return "Checkers Instructor"
+            }             
+            
         }
+
         const listProfiles = fetchedInstructorProfilesData.map(
             (element) => {
                 return (
@@ -112,7 +132,20 @@ function InstructorsComponent() {
                                 
                             </div>{/* avatar and country flag */}
 
-                            <div className='InstructorProfileBoxTypeOfGame'> Chess {findInstructorTitle(element.id)} </div> {/* type of game */}
+                            <div className='ICInstructorData'> 
+                                <div className='ICInstructorTitleName'> 
+                                    <div className='ICInstructorTitle'> {findInstructorTitle(element.id)} </div>
+                                    <div className='ICInstructorName'> {element.first_name}  </div>
+                                    <div className='ICInstructorName'> {element.last_name} </div>
+                                </div>
+                                <div className='ICInstructorTypeOFGame'> {FindInstructorTypeOfGame(element.id)}</div>  
+                                <div className='ICInstructorRankingBox'> 
+                                    <div className='ICInstructorCRdef'>Current ranking</div>
+                                    <div>2225</div>
+                                </div>
+                                <div> top ranking</div>
+                            
+                            </div> {/* Instructor data */}
 
                         </div>{/* InstructorProfileBoxPersonalData */}
    
