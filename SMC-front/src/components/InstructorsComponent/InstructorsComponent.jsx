@@ -14,6 +14,8 @@ import LichessIcon from '../../assets/socialIcons/lichessIcon.png'
 import TwitterIcon from '../../assets/socialIcons/twitterIcon.png'
 import ChesscomIcon from '../../assets/socialIcons/chesscomIcon.png'
 import EmailIcon from '../../assets/socialIcons/emailIcon.png'
+// other icons
+import ClockIcon from '../../assets/Vector1.png'
 
 function InstructorsComponent() {
 
@@ -106,6 +108,98 @@ function InstructorsComponent() {
             // we check if the instructor is draughts_instructor (remember profile calls checkers_profile)
             if (object.profile_type == "draughts_instructor") {
                 return "Checkers Instructor"
+            }           
+        }
+
+        function findInstructorActualRanking(id){
+            let object = {}
+
+            // we check if object exist
+            try{
+                object = fetchedInstructorProfilesData.find(obj => obj.id === id)
+            } catch(e) {
+                return (console.log("wrong id"))
+            } 
+
+            // we check if the instructor is chess_instructor
+            if (object.profile_type == "chess_instructor") {
+                try {
+                    const chessActualRanking  = object.chess_profile.actual_rating
+                    
+                    // if wrong json
+                    if (chessActualRanking == undefined) {  
+                        console.log("wrong json for chess actual ranking for profile id " + object.id)                      
+                        return ("")
+                    }
+
+                    return (chessActualRanking)
+                }catch (e) {
+                    console.log(e)
+                    return ("")
+                }
+            } 
+            // we check if the instructor is draughts_instructor (remember profile calls checkers_profile)
+            if (object.profile_type == "draughts_instructor") {
+                try {
+                    const draughtsActualRanking  = object.checkers_profile.actual_rating
+                    
+                    // if wrong json
+                    if (draughtsActualRanking == undefined) {  
+                        console.log("wrong json for draughts actual for profile id " + object.id)                      
+                        return ("")
+                    }
+
+                    return (draughtsActualRanking)
+                }catch (e) {
+                    console.log(e)
+                    return ("")
+                }
+            }             
+            
+        }
+        function findInstructorTopRanking(id){
+            let object = {}
+
+            // we check if object exist
+            try{
+                object = fetchedInstructorProfilesData.find(obj => obj.id === id)
+            } catch(e) {
+                return (console.log("wrong id"))
+            } 
+
+            // we check if the instructor is chess_instructor
+            if (object.profile_type == "chess_instructor") {
+                try {
+                    const chessTopRanking  = object.chess_profile.top_rating
+                    
+                    // if wrong json
+                    if (chessTopRanking == undefined) {  
+                        console.log("wrong json for chess top ranking for profile id " + object.id)                      
+                        return ("")
+                    }
+
+                    return (chessTopRanking)
+                }catch (e) {
+                    console.log(e)
+                    return ("")
+                }
+            } 
+            // we check if the instructor is draughts_instructor (remember profile calls checkers_profile)
+            if (object.profile_type == "draughts_instructor") {
+                try {
+                    const draughtsTopRanking  = object.checkers_profile.top_rating
+                    
+                    // if wrong json
+                    if (draughtsTopRanking == undefined) {  
+                        console.log("wrong json for draughts top rating for profile id " + object.id)                      
+                        return ("")
+                    }
+
+                    return (draughtsTopRanking)
+                }catch (e) {
+                    console.log(e)
+                    return ("")
+                }
             }             
             
         }
@@ -141,15 +235,26 @@ function InstructorsComponent() {
                                 <div className='ICInstructorTypeOFGame'> {FindInstructorTypeOfGame(element.id)}</div>  
                                 <div className='ICInstructorRankingBox'> 
                                     <div className='ICInstructorCRdef'>Current ranking</div>
-                                    <div>2225</div>
+                                    <div className='ICInstructorActualRanking'>{findInstructorActualRanking(element.id)}</div>
                                 </div>
-                                <div> top ranking</div>
+                                <div className='ICInstructorRankingBox2'> 
+                                    <div className='ICInstructorCRdef'>Top ranking</div>
+                                    <div>{findInstructorTopRanking(element.id)}</div>
+                                </div>
+                                {/* <div> top ranking</div> */}
                             
                             </div> {/* Instructor data */}
 
                         </div>{/* InstructorProfileBoxPersonalData */}
-   
- 
+
+                        <div className='ICPrivateTraining'>Private Trainings</div>
+                        <div className='ICPTRectangle'>
+                            <div className='ICPrive'> 
+                                    <div > <img className='ICPriveIcon' src={ClockIcon} alt="Clock Icon" /> </div>
+                                    <div className='ICPriveDescription'> 1h polish</div>
+                                    <div className='ICPrivePrize'> 200 PLN </div>
+                            </div>
+                        </div>
                     </div>
                 )
             }

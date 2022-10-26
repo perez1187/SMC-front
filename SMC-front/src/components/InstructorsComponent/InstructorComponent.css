@@ -112,7 +112,16 @@
 }
 
 .ICInstructorRankingBox{
-    
+    margin-top: 55px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.ICInstructorRankingBox2{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .ICInstructorCRdef{
@@ -123,7 +132,81 @@
     line-height: 26px;
     /* identical to box height */
     margin-left: 17px;
+    width: 150px;
     
     
     color: #FFFFFF; 
+}
+
+.ICPrivateTraining{
+    margin-top: 90px;
+    margin-left: 21px;
+    
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    /* line-height: 38px; */
+    /* identical to box height */
+
+
+    color: #FFFFFF;
+
+}
+
+.ICPTRectangle {
+    width: 560px;
+    height: 40px;
+    align-self: center;
+    margin-top: 17px;
+
+    background: #141822;
+    border-radius: 6px;
+
+}
+
+.ICInstructorActualRanking{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 26px;
+    /* identical to box height */
+    /* margin-left: 17px; */
+    width: 150px;
+        
+    color: #FFFFFF; 
+}
+
+.ICPrive{
+    height: 23px;
+    margin-left: 18px;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    /* line-height: 22px; */
+    /* identical to box height, or 110% */
+
+    letter-spacing: -0.2px;
+
+    color: #FFFFFF;
+}
+
+.ICPriveIcon {
+    height: 23px;
+    margin-right: 10px;
+    
+}
+
+.ICPriveDescription{
+
+}
+.ICPrivePrize{
+
 }
