@@ -16,6 +16,7 @@ import ChesscomIcon from '../../assets/socialIcons/chesscomIcon.png'
 import EmailIcon from '../../assets/socialIcons/emailIcon.png'
 // other icons
 import ClockIcon from '../../assets/Vector1.png'
+import WalletIcon from '../../assets/VectorWallet.png'
 
 function InstructorsComponent() {
 
@@ -213,8 +214,8 @@ function InstructorsComponent() {
                             <div > {/* avatar and country flag */}
                                 <div className='InstructorProfileBoxAvatar' style={{
                                     backgroundImage: `url(${element.avatar})`,
-                                    width:"200px",
-                                    height:'200px',
+                                    width:"150px",
+                                    height:'150px',
                                     backgroundRepeat:"no-repeat",
                                     backgroundSize:"cover" 
                                     }} ></div>
@@ -227,8 +228,9 @@ function InstructorsComponent() {
                             </div>{/* avatar and country flag */}
 
                             <div className='ICInstructorData'> 
+                                <div className='ICInstructorTitle'> {findInstructorTitle(element.id)} </div>    
                                 <div className='ICInstructorTitleName'> 
-                                    <div className='ICInstructorTitle'> {findInstructorTitle(element.id)} </div>
+                                    {/* <div className='ICInstructorTitle'> {findInstructorTitle(element.id)} </div> */}
                                     <div className='ICInstructorName'> {element.first_name}  </div>
                                     <div className='ICInstructorName'> {element.last_name} </div>
                                 </div>
@@ -239,7 +241,7 @@ function InstructorsComponent() {
                                 </div>
                                 <div className='ICInstructorRankingBox2'> 
                                     <div className='ICInstructorCRdef'>Top ranking</div>
-                                    <div>{findInstructorTopRanking(element.id)}</div>
+                                    <div className='ICInstructorActualRanking'>{findInstructorTopRanking(element.id)}</div>
                                 </div>
                                 {/* <div> top ranking</div> */}
                             
@@ -252,7 +254,10 @@ function InstructorsComponent() {
                             <div className='ICPrive'> 
                                     <div > <img className='ICPriveIcon' src={ClockIcon} alt="Clock Icon" /> </div>
                                     <div className='ICPriveDescription'> 1h polish</div>
+                                    <div className='ICBorder'></div>
+                                    <div > <img className='ICPriveIcon' src={WalletIcon} alt="Wallet Icon" /> </div>
                                     <div className='ICPrivePrize'> 200 PLN </div>
+                                    
                             </div>
                         </div>
                     </div>
