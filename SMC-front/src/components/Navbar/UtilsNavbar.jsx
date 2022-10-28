@@ -4,7 +4,7 @@ import { AppBar, styled, Toolbar, Typography, Box, InputBase, Badge, Avatar, Men
 // using context
 import {useAuth} from '../../hooks/useAuth'
 
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -40,7 +40,7 @@ export function LoginMenu() {
 
     const navigateMyProfile = () => {           
         navigate('myprofile/');   
-        setOpen(false)       
+        // setOpen(false)       
                 };
 
     return (
@@ -84,54 +84,3 @@ export function LoginMenu() {
     )
 }
 
-export function LogoutMenu() {
-    // useStates for context
-    const {authData, setAuth} =useAuth()
-    // navigate
-    const navigate = useNavigate();
-
-    const navigateMyProfile = () => {           
-        navigate('myprofile/');   
-        setOpen(false)       
-                };
-
-    return (
-        <Typography 
-            variant='span'
-        // onClick= {e=> setOpen(true)} // open menu when clicked
-        >            
-            {!authData ? 
-                    <Button 
-                    variant="contained"
-                    style={{
-                        borderRadius:80,
-                        fontSize:15,
-                        fontWeight:600,
-                        fontFamily:'Work Sans',
-                        color:"#FFFFFF",
-                        textTransform:"none"
-                    }}
-                    onClick={()=> navigateMyProfile()}
-                >
-                    My Profile
-                </Button>
-                :
-                // <p>{authData.email}</p>
-                <Button 
-                    variant="contained"
-                    style={{
-                        borderRadius:80,
-                        fontSize:15,
-                        fontWeight:600,
-                        fontFamily:'Work Sans',
-                        color:"#FFFFFF",
-                        textTransform:"none"
-                    }}
-                    onClick={()=> navigateMyProfile()}
-                >
-                    My Profile
-                </Button>
-            }
-        </Typography>
-    )
-}

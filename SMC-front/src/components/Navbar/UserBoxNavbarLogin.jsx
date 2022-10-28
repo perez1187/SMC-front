@@ -36,6 +36,10 @@ function UserBoxNavbarLogin() {
     const navigateAcademies = () => {           
         navigate('academies/');              
             };
+
+    const navigateAboutUs = () => {           
+        navigate('aboutus/');              
+            };
     
     // menu r
     const [open, setOpen] = useState(false)
@@ -115,8 +119,9 @@ function UserBoxNavbarLogin() {
                 }}
         >
             <MenuItem onClick={()=> navigateMyProfile()} >My Profile</MenuItem>
-            <MenuItem onClick={()=> navigateMyProfile()} >Instructors</MenuItem>
+            <MenuItem onClick={()=> navigateInstructors()} >Instructors</MenuItem>
             <MenuItem onClick={()=> navigateAcademies()} >Academies</MenuItem>
+            <MenuItem onClick={()=> navigateAboutUs()} >About Us</MenuItem>
 
             {/* <MenuItem onClick={()=> logout()} >Logout</MenuItem> */}
         </Menu>

@@ -1,12 +1,37 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
 // mui
-import { BottomNavigation } from '@mui/material';
+import { BottomNavigation, Button } from '@mui/material';
 
 // css
 import './Footer.css'
 
 function Footer() {
+
+    // navigate
+    const navigate = useNavigate();
+
+    const navigatePrivacy = () => {           
+        navigate('privacy/');   
+        // setOpen(false)       
+                };
+
+    const navigateTerms = () => {           
+      navigate('terms/');   
+      // setOpen(false)       
+              };  
+
+    const navigateCookies = () => {           
+      navigate('cookies/');   
+      // setOpen(false)       
+              };     
+              
+    const navigateContact = () => {           
+      navigate('contact/');   
+      // setOpen(false)       
+              };            
+
   return (
     <BottomNavigation style={{
       width:'100%',
@@ -23,10 +48,59 @@ function Footer() {
 
       }} 
     >
-      <div className='FooterLinks'>Privacy Policy</div>
-      <div className='FooterLinks'>Terms and conditions</div>
-      <div className='FooterLinks'>Cookie settings</div>
-      <div className='FooterLinks'>Contact</div>
+
+        <Button 
+            variant="text" 
+            onClick={() => navigatePrivacy()} 
+            style={{
+                color: "white",
+                fontSize:10,
+                fontFamily:'Roboto',
+                fontStyle:'normal',
+                fontWeight:300,
+                textTransform:"none"
+                }}>
+            Privacy Policy
+        </Button>
+        <Button 
+            variant="text" 
+            onClick={() => navigateTerms()} 
+            style={{
+                color: "white",
+                fontSize:10,
+                fontFamily:'Roboto',
+                fontStyle:'normal',
+                fontWeight:300,
+                textTransform:"none"
+                }}>
+            Terms and Conditions
+        </Button>
+        <Button 
+            variant="text" 
+            onClick={() => navigateCookies()} 
+            style={{
+                color: "white",
+                fontSize:10,
+                fontFamily:'Roboto',
+                fontStyle:'normal',
+                fontWeight:300,
+                textTransform:"none"
+                }}>
+            Cookie Settings
+        </Button>
+        <Button 
+            variant="text" 
+            onClick={() => navigateContact()} 
+            style={{
+                color: "white",
+                fontSize:10,
+                fontFamily:'Roboto',
+                fontStyle:'normal',
+                fontWeight:300,
+                textTransform:"none"
+                }}>
+            Contact
+        </Button>
     </BottomNavigation>
     
     

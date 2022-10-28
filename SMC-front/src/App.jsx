@@ -22,6 +22,9 @@ import ChangeForgotPasswordPage from './pages/ChangeForgotPasswordPage';
 import UserProfile from './pages/UserProfile';
 import Academies from './pages/AcademiesPage';
 import AboutUsPage from './pages/AboutUsPage';
+import CookieSettiings from './pages/PrivacyAndPolicyPages/CookieSettiings';
+import PrivacyPolicyPage from './pages/PrivacyAndPolicyPages/PrivacyPolicyPage';
+import TermsAndConditionsPage from './pages/PrivacyAndPolicyPages/TermsAndConditionsPage';
 
 
 function App() {
@@ -53,6 +56,11 @@ function App() {
             <Route path='instructors/' element={<InstructorsPage/>} />
             <Route path='academies/' element={<Academies/>} />
             <Route path='aboutus/' element={<AboutUsPage/>} />
+
+            {/* Privacy and Policy pages */}
+            <Route path='cookies/' element={<CookieSettiings/>} />
+            <Route path='privacy/' element={<PrivacyPolicyPage/>} />
+            <Route path='terms/' element={<TermsAndConditionsPage/>} />
 
           </Routes>
 

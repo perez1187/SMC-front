@@ -5,6 +5,9 @@ import {Button }  from '@mui/material'
 import { useNavigate } from "react-router-dom";
 import Navigation from './Navigation';
 
+// utils
+import {UserBoxFullScreen, UserBoxMobile, LoginMenu} from './UtilsNavbar.jsx'
+
 function UserBoxNavbarLogout() {
 
     // 👇️ navigate to /
@@ -18,13 +21,16 @@ function UserBoxNavbarLogout() {
                 };
   return (
     <>
+        <UserBoxFullScreen>
+            
+        </UserBoxFullScreen>
         <div style={{
             display:"flex"
         }}>
             <div style={{
                 padding:"5px", 
                 display:"flex", 
-                flexDirection:'row'
+                
             }}>
                 <Navigation></Navigation>
                 <Button 
