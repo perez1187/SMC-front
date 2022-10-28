@@ -8,10 +8,14 @@ import {useAuth} from '../../hooks/useAuth'
 // css
 import './UserBoxNavbarLogin.css'
 
+// utils
+import {UserBoxFullScreen, UserBoxMobile, LoginMenu} from './UtilsNavbar.jsx'
+
 //mui
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import { AppBar, styled, Toolbar, Typography, Box, InputBase, Badge, Avatar, Menu, MenuItem,Button }  from '@mui/material'
+import Navigation from './Navigation';
 
 
 
@@ -39,29 +43,6 @@ function UserBoxNavbarLogin() {
     // useStates for context
     const {authData, setAuth} =useAuth()
 
-
-    const UserBoxFullScreen = styled(Box)(({ theme}) => ({
-        display: "none",
-        gap: "20px",
-        alignItems:"center",
-        padding: "5px",
-        //backgroundColor: "white",
-        // over sm show, under hide
-        [theme.breakpoints.up("sm")] : {
-            display: "flex"
-        }
-    }))
-    const UserBoxMobile = styled(Box)(({ theme}) => ({
-        display: "flex",
-        padding: "5px",
-        gap: "20px",
-        alignItems:"center",
-        [theme.breakpoints.up("sm")] : {
-            display: "none"
-        }
-        //backgroundColor: "white",
-    }))
-
     // logout function
     const logout = () => {
         setAuth(null)
@@ -70,79 +51,15 @@ function UserBoxNavbarLogin() {
 
   return (
     <>
-        <Box sx = {{
-            display: "flex",            
-        }}>
+        <Box sx = {{display: "flex",}}>
       
             <UserBoxFullScreen>
-                {/* <Badge badgeContent={4} color="error">
-                    <MailIcon />
-                </Badge>
-                <Badge badgeContent={4} color="error">
-                    <NotificationsNoneIcon />
-                </Badge> */}
-                <Button 
-                    variant="text" 
-                    onClick={() => navigateInstructors()} 
-                    style={{
-                        color: "white",
-                        fontSize:13
-                        }}>
-                    Instructors
-                </Button>
-                <Button 
-                    variant="text" 
-                    onClick={() => navigateAcademies()} 
-                    style={{
-                        color: "white",
-                        fontSize:13
-                        }}>
-                    academies
-                </Button>
-                {/* <Avatar 
-                    sx={{ width: 30, height: 30 }}
-                    src="https://images.pexels.com/photos/846741/pexels-photo-846741.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                    onClick= {e=> setOpen(true)} // open menu when clicked
-                /> */}
-                <Typography 
-                    variant='span'
-                   // onClick= {e=> setOpen(true)} // open menu when clicked
-                >            
-                    {!authData ? 
-                        <Button variant="contained">Login</Button> 
-                        :
-                        // <p>{authData.email}</p>
-                        <Button 
-                            variant="contained"
-                            style={{
-                                borderRadius:80,
-                                fontSize:15,
-                                fontWeight:600,
-                                fontFamily:'Work Sans',
-                                color:"#FFFFFF",
-                                textTransform:"none"
-                            }}
-                            onClick={()=> navigateMyProfile()}
-                        >
-                            My Profile
-                        </Button>
-                    }
-                </Typography>
+                <Navigation/>
+                <LoginMenu/>
             </UserBoxFullScreen>
             
             <UserBoxMobile onClick= {e=> setOpen(true)}> 
-                {/* <Avatar 
-                    sx={{ width: 30, height: 30 }}
-                    src="https://images.pexels.com/photos/846741/pexels-photo-846741.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                    
-                /> */}
-                {/* <Typography variant='span'>            
-                    {!authData ? 
-                        <p> login</p>  
-                        :
-                        <p>{authData.email}</p>
-                    }
-                </Typography> */}
+
                 <Button 
                     variant="contained"
                     style={{

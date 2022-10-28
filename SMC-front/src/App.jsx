@@ -1,15 +1,5 @@
 import './App.css'
 
-// pages
-import ContactPage from './pages/ContactPage';
-import LoginPage from './pages/LoginPage';
-import LandingPage from './pages/LandingPage';
-import RegisterPage from './pages/RegisterPage';
-import ActivatePage from './pages/ActivatePage';
-import ForgotPasswordPage from './pages/ForgotPasswordPage';
-import ChangeForgotPasswordPage from './pages/ChangeForgotPasswordPage';
-import UserProfile from './pages/UserProfile';
-
 // components
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
@@ -20,7 +10,18 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 // context
 import {AuthenticationProvider} from './hooks/useAuth'
 import InstructorsPage from './pages/InstructorsPage';
+
+// pages
+import ContactPage from './pages/ContactPage';
+import LoginPage from './pages/LoginPage';
+import LandingPage from './pages/LandingPage';
+import RegisterPage from './pages/RegisterPage';
+import ActivatePage from './pages/ActivatePage';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import ChangeForgotPasswordPage from './pages/ChangeForgotPasswordPage';
+import UserProfile from './pages/UserProfile';
 import Academies from './pages/AcademiesPage';
+import AboutUsPage from './pages/AboutUsPage';
 
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
             <Route path='contact/' element={<ContactPage/>} />
             <Route path='instructors/' element={<InstructorsPage/>} />
             <Route path='academies/' element={<Academies/>} />
+            <Route path='aboutus/' element={<AboutUsPage/>} />
 
           </Routes>
 

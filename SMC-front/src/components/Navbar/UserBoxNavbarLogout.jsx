@@ -3,6 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import {Button }  from '@mui/material'
 import { useNavigate } from "react-router-dom";
+import Navigation from './Navigation';
 
 function UserBoxNavbarLogout() {
 
@@ -21,8 +22,11 @@ function UserBoxNavbarLogout() {
             display:"flex"
         }}>
             <div style={{
-                padding:"5px"
+                padding:"5px", 
+                display:"flex", 
+                flexDirection:'row'
             }}>
+                <Navigation></Navigation>
                 <Button 
                     variant="contained" 
                     size="medium"
