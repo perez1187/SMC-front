@@ -23,14 +23,38 @@ function UserBoxNavbarLogout() {
             <div style={{
                 padding:"5px"
             }}>
-                <Button variant="contained" onClick={()=>navigateLogin()}>                
+                <Button 
+                    variant="contained" 
+                    size="medium"
+                    onClick={()=>navigateLogin()}
+                    style={{
+                        borderRadius:80,
+                        fontSize:15,
+                        fontWeight:600,
+                        fontFamily:'Work Sans',
+                        color:"#FFFFFF",
+                        textTransform:"none"
+                    }}
+                >                
                         Login            
                 </Button> 
             </div>
             <div style={{
                 padding:"5px"
             }}>
-                <Button variant="contained" onClick={()=>navigateRegister()}>
+                <Button 
+                    variant="contained" 
+                    size="medium"
+                    onClick={()=>navigateRegister()}
+                    style={{
+                        borderRadius:80,
+                        fontSize:15,
+                        fontWeight:600,
+                        fontFamily:'Work Sans',
+                        color:"#FFFFFF",
+                        textTransform:"none"
+                    }}                    
+                >
                     Register
                 </Button> 
             </div>

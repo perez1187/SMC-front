@@ -10,7 +10,7 @@
 .InstructorProfileBox{
     /* position: absolute; */
     width: 400px;
-    height: 400px;
+    height: 350px;
 
     /* background-color: red; */
 
@@ -24,6 +24,10 @@
     box-shadow: 43.2266px 64.6818px 172.907px rgba(8, 15, 40, 0.09);
     border-radius: 21.787px;
 }
+
+.InstructorProfileBox:hover {
+    transform: scale(1.05);
+  }
 
 /* Avatar, name, title, game, opinions */
 .InstructorProfileBoxPersonalData{ 
@@ -114,7 +118,7 @@
 }
 
 .ICInstructorRankingBox{
-    margin-top: 55px;
+    margin-top: 50px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -141,7 +145,7 @@
 }
 
 .ICPrivateTraining{
-    margin-top: 90px;
+    margin-top: 40px;
     margin-left: 21px;
     
     font-family: 'Poppins';
