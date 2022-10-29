@@ -6,14 +6,6 @@ import { fetchInstructorProfiles } from '../../services/InstructorServices'
 // css
 import './InstructorComponent.css'
 
-// social icons
-import FbICon from '../../assets/socialIcons/facebookIcon.png'
-import InstagramIcon from '../../assets/socialIcons/instagramIcon.png'
-import LinkedinIcon from '../../assets/socialIcons/linkedinIcon.png'
-import LichessIcon from '../../assets/socialIcons/lichessIcon.png'
-import TwitterIcon from '../../assets/socialIcons/twitterIcon.png'
-import ChesscomIcon from '../../assets/socialIcons/chesscomIcon.png'
-import EmailIcon from '../../assets/socialIcons/emailIcon.png'
 // other icons
 import ClockIcon from '../../assets/Vector1.png'
 import WalletIcon from '../../assets/VectorWallet.png'
@@ -53,7 +45,7 @@ function InstructorsComponent() {
             } 
 
             // we check if the instructor is chess_instructor
-            if (object.profile_type == "chess_instructor") {
+            if (object.profileType == 2) { // id 2 chess instructor
                 try {
                     const chess_title  = object.chess_profile.chess_title
                     
@@ -70,7 +62,7 @@ function InstructorsComponent() {
                 }
             } 
             // we check if the instructor is draughts_instructor (remember profile calls checkers_profile)
-            if (object.profile_type == "draughts_instructor") {
+            if (object.profileType == 3) { //id 3 draughts instructor
                 try {
                     const draughts_title  = object.checkers_profile.draughts_title
                     
@@ -100,14 +92,14 @@ function InstructorsComponent() {
             } 
 
             // we check if the instructor is chess_instructor
-            if (object.profile_type == "chess_instructor") {
+            if (object.profileType == 2) {
                 // console.log("yes")
                 // const typeOfGame  = "Chess"
                 return ("Chess Instructor")
 
             } 
             // we check if the instructor is draughts_instructor (remember profile calls checkers_profile)
-            if (object.profile_type == "draughts_instructor") {
+            if (object.profileType == 3) {
                 return "Checkers Instructor"
             }           
         }
@@ -123,7 +115,7 @@ function InstructorsComponent() {
             } 
 
             // we check if the instructor is chess_instructor
-            if (object.profile_type == "chess_instructor") {
+            if (object.profileType == 2) {
                 try {
                     const chessActualRanking  = object.chess_profile.actual_rating
                     
@@ -140,7 +132,7 @@ function InstructorsComponent() {
                 }
             } 
             // we check if the instructor is draughts_instructor (remember profile calls checkers_profile)
-            if (object.profile_type == "draughts_instructor") {
+            if (object.profileType == 3) {
                 try {
                     const draughtsActualRanking  = object.checkers_profile.actual_rating
                     
@@ -169,7 +161,7 @@ function InstructorsComponent() {
             } 
 
             // we check if the instructor is chess_instructor
-            if (object.profile_type == "chess_instructor") {
+            if (object.profileType == 2) {
                 try {
                     const chessTopRanking  = object.chess_profile.top_rating
                     
@@ -186,7 +178,7 @@ function InstructorsComponent() {
                 }
             } 
             // we check if the instructor is draughts_instructor (remember profile calls checkers_profile)
-            if (object.profile_type == "draughts_instructor") {
+            if (object.profileType == 3) {
                 try {
                     const draughtsTopRanking  = object.checkers_profile.top_rating
                     
