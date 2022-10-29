@@ -22,6 +22,10 @@ function Navigation() {
         navigate('academies/');              
             };
 
+    const navigateAboutUs = () => {           
+        navigate('aboutus/');              
+            };
+
   return (
     <div>
         <Button 
@@ -44,7 +48,7 @@ function Navigation() {
         </Button>
         <Button 
             variant="text" 
-            onClick={() => navigateAcademies()} 
+            onClick={() => navigateAboutUs()} 
             style={{
                 color: "white",
                 fontSize:13
