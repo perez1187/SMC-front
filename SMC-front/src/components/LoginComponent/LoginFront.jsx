@@ -38,7 +38,7 @@ function LoginFront() {
           
         // we can use shortcur if key and value is the same{username,  password}
         const data = await auth( {'email':username, 'password': password}) 
-        console.log(data.email)
+        console.log(data)
         
         // 👇️ navigate to /
         const navigateHome = async () => {           

@@ -18,9 +18,14 @@ export default function UserProfilesComponent() {
 
     // navigate
     const navigate = useNavigate()
+
     const navigateHome = () => {           
         navigate('/');          
                 };
+
+    const navigateCreatePage = () => {           
+        navigate('/myprofile/create/');          
+                };                
 
     const test_wrong_token = 'abc'
 
@@ -88,6 +93,7 @@ export default function UserProfilesComponent() {
   return (
     <div> settings 
         Your Profiles 
+        <button onClick={()=> navigateCreatePage()}> create profile</button>
         <div>{RenderProfiles()} </div>
     </div>
   )

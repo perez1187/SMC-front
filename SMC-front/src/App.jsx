@@ -25,6 +25,7 @@ import AboutUsPage from './pages/AboutUsPage';
 import CookieSettiings from './pages/PrivacyAndPolicyPages/CookieSettiings';
 import PrivacyPolicyPage from './pages/PrivacyAndPolicyPages/PrivacyPolicyPage';
 import TermsAndConditionsPage from './pages/PrivacyAndPolicyPages/TermsAndConditionsPage';
+import CreateNewProfilePage from './pages/CreateNewProfilePage';
 
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
             <Route path='forgot-password/' element={<ForgotPasswordPage/>} /> 
             <Route path='change-forgot-password/' element={<ChangeForgotPasswordPage/>} />
             <Route path='myprofile/' element={<UserProfile/>} /> 
+            <Route path='myprofile/create/' element={<CreateNewProfilePage/>} /> 
 
             {/* main pages  */}
             <Route path='contact/' element={<ContactPage/>} />
