@@ -1,0 +1,13 @@
+.CNPForm{
+    display: flex;
+    flex-direction: column;
+}
+
+.CNPLabel{
+    display: flex;
+    flex-direction: row;
+}
+
+.CNPLabelName{
+    width: 200px;
+}
