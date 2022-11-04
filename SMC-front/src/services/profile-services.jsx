@@ -21,10 +21,11 @@ export function CreateNewProfile(accessToken,data) {
     return fetch('http://127.0.0.1:8000/profile-owner/create/', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
+            // 'Content-Type': "multipart/form-data",
             'Authorization':accessToken
         },
-        body: JSON.stringify(data)
+        // body: JSON.stringify(data)
+        body:data
     }
     ).then(resp => resp.json())
     .catch( e => {

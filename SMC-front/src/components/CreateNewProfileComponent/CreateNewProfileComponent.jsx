@@ -18,18 +18,21 @@ function CreateNewProfileComponent() {
     // useStates for form
     const [name, setName] = useState('')
     const [lastName, setLastName] = useState('')
+    const [avatar, setAvatar] = useState()
+    const [slug,setSlug] = useState('')
 
     console.log(name)
  
-    // function for xreate new profile
+    // function for create new profile
     const handleSubmit = async e => {
-        //e.preventDefault() // we are not going to refresh the page
-        
+        // e.preventDefault() // we are not going to refresh the page
+        console.log("wszedlem")
         if (authData) {
-             
+            
+            // first we create new access token
             const newAccessToken = await refreshAccessToken(authData.tokens.refresh)
             // const newAccessToken = await refreshAccessToken(test_wrong_token)
-            console.log(newAccessToken.access)
+            // console.log(newAccessToken.access)
             
             // if refresh token is not valid, we logout the user
             if (newAccessToken.detail) {
@@ -39,7 +42,20 @@ function CreateNewProfileComponent() {
 
             // else, we fetch user profiles    
             } else {
-                    const data = await CreateNewProfile( newAccessToken.access, {'user':authData.id}) 
+ 
+                    // form data automatically create  'Content-Type'
+                    const createData = new FormData()
+
+                    // we add all fields to FormData like that:
+                    createData.append('user',authData.id)
+                    createData.append('avatar',avatar)
+                    createData.append('slug',slug)
+
+                    // we call CreateNewProfile function and paste token + data
+                    const data = await CreateNewProfile( 
+                        newAccessToken.access,
+                        createData
+                    ) 
                     console.log(data)
                 }
             }
@@ -57,9 +73,14 @@ function CreateNewProfileComponent() {
             <button>Draughts Instructor</button>
             <button>Academy/Club</button>
         </div>
+        <button onClick={()=>handleSubmit()}> Create New Profile</button>
         
         {/* form for creating profile */}
-        <form onSubmit={handleSubmit} className='CNPForm'>
+        <form  className='CNPForm'>
+            <label className='CNPLabel'>
+                <div className='CNPLabelName'> Profile Visible (Landing Page):</div>
+                <input type="text" />
+            </label >
             <label className='CNPLabel'>
                 <div className='CNPLabelName'> First Name:</div>
                 <input type="text" onChange={ e => setName(e.target.value)} />
@@ -69,8 +90,13 @@ function CreateNewProfileComponent() {
                 <input type="text" />
             </label >
             <label className='CNPLabel'>
-                Avatar:
-                {/* <input type="text" onChange={ e => setName(e.target.value)} /> */}
+                <div className='CNPLabelName'> Profile name </div>
+                <input type="text" onChange={ e => setSlug(e.target.value)} /> 
+            </label >
+            <label className='CNPLabel'>
+                <div className='CNPLabelName' > Avatar:</div>
+                {/* files bec we can add many files, and we want 1, that is we add [0] */}
+                <input type="file" accept='image/*'  onChange={ e => setAvatar(e.target.files[0])} /> 
             </label>
             <label className='CNPLabel'>
                 <div className='CNPLabelName'> Country:</div>
@@ -117,6 +143,38 @@ function CreateNewProfileComponent() {
                 <div className='CNPLabelName'> Top Rating Blitz Year:</div>                
                 <input type="text" />
             </label>
+            
+            {/* checkers rating  */}
+            <label className='CNPLabel'>
+                <div className='CNPLabelName'> Draughts Title:</div>
+                <input type="text" />
+            </label>
+            Rating (fmjd.org)
+            <label className='CNPLabel'>
+                <div className='CNPLabelName'> Actual Rating Classic</div>
+                <input type="text" />
+            </label>
+            <label className='CNPLabel'>
+                <div className='CNPLabelName'> Actual Rating Blitz:</div>                
+                <input type="text" />
+            </label>
+            <label className='CNPLabel'>
+                <div className='CNPLabelName'> Top Rating Classic:</div>                
+                <input type="text" />
+            </label>
+            <label className='CNPLabel'>
+                <div className='CNPLabelName'> Top Rating Classic Year:</div>                
+                <input type="text" />
+            </label>
+            <label className='CNPLabel'>
+                <div className='CNPLabelName'> Top Rating Blitz:</div>                
+                <input type="text" />
+            </label>
+            <label className='CNPLabel'>
+                <div className='CNPLabelName'> Top Rating Blitz Year:</div>                
+                <input type="text" />
+            </label>
+
             Socials
             <label className='CNPLabel'>
                 <div className='CNPLabelName'> Facebook</div>                
@@ -151,6 +209,10 @@ function CreateNewProfileComponent() {
                 <input type="text" />
             </label>
             <label className='CNPLabel'>
+                <div className='CNPLabelName'> fmjd.org:</div>                
+                <input type="text" />
+            </label>
+            <label className='CNPLabel'>
                 <div className='CNPLabelName'> Languages:</div>                
                 <input type="text" />
             </label>
@@ -174,8 +236,18 @@ function CreateNewProfileComponent() {
                 <div className='CNPLabelName'> Message to SMC (optional):</div>                
                 <textarea rows='5' cols="50" value=''> </textarea>
             </label>
+                           
+            
+            
+            {/* <label className='CNPLabel'>
+                <div className='CNPLabelName'> Message to SMC (optional):</div>                
+                <textarea rows='5' cols="50" value=''> </textarea>
+            </label> */}
+            
         </form>
-        {/* <button onClick={()=>handleSubmit()}> create</button> */}
+        fdsnsdjknk
+        <button onClick={()=>handleSubmit()}> create</button>
+        <label> d</label>
     </div>
   )
 }
