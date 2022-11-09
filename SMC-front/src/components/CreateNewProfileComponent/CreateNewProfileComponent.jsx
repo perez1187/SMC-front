@@ -16,17 +16,38 @@ function CreateNewProfileComponent() {
     const {authData,setAuth} =useAuth()
 
     // useStates for form
+    const [isVisible, setIsVisible] = useState(false) // visible on all instructors page
     const [name, setName] = useState('')
     const [lastName, setLastName] = useState('')
+    const [slug,setSlug] = useState('') // profilename
     const [avatar, setAvatar] = useState()
-    const [slug,setSlug] = useState('')
+    const [country, setCountry] = useState('')
+    const [chessTitile, setChessTitle] = useState('')
+    const [actualRatingStdChess, setActualRatingStdChess] = useState('')
+    const [actualRatingRapidChess, setActualRatingRapidChess] = useState('')
+    const [actualRatingBlitzChess, setActualRatingBlitzChess] = useState('')
+    const [topRatingStdChess, setTopRatingStdChess] = useState('')
+    const [topRatingStdChessYear, setTopRatingStdChessYear] = useState('')
+    const [topRatingRapidChess, setTopRatingRapidChess] = useState('')
+    const [topRatingRapidChessYear, setTopRatingRapidChessYear] = useState('')
+    const [topRatingBlitzChess, setTopRatingBlitzChess] = useState('')
+    const [topRatingBlitzChessYear, setTopRatingBlitzChessYear] = useState('')
 
-    console.log(name)
+    const [checkersTitile, setCheckersTitle] = useState('')
+    const [actualRatingStdCheckers, setActualRatingStdCheckers] = useState('')
+    const [actualRatingBlitzCheckers, setActualRatingBlitzCheckers] = useState('')
+    const [topRatingStdCheckers, setTopRatingStdCheckers] = useState('')
+    const [topRatingStdCheckersYear, setTopRatingStdCheckersYear] = useState('')
+    const [topRatingBlitzCheckers, setTopRatingBlitzCheckers] = useState('')
+    const [topRatingBlitzChessCheckers, setTopRatingBlitzChessCheckers] = useState('')
+
+
+    console.log(actualRatingStdChess)
  
     // function for create new profile
     const handleSubmit = async e => {
         // e.preventDefault() // we are not going to refresh the page
-        console.log("wszedlem")
+        // console.log("wszedlem")
         if (authData) {
             
             // first we create new access token
@@ -40,16 +61,22 @@ function CreateNewProfileComponent() {
                 setAuth(null)
                 navigateHome()
 
-            // else, we fetch user profiles    
+             
             } else {
  
                     // form data automatically create  'Content-Type'
                     const createData = new FormData()
+                    const defaultChessProfile = {
+                        "chess_title":"GM",
+                        "top_rating":"2350",
+                        "actual_rating":actualRatingStdChess
+                    }
 
                     // we add all fields to FormData like that:
                     createData.append('user',authData.id)
                     createData.append('avatar',avatar)
                     createData.append('slug',slug)
+                    createData.append('chess_profile',JSON.stringify(defaultChessProfile))
 
                     // we call CreateNewProfile function and paste token + data
                     const data = await CreateNewProfile( 
@@ -79,11 +106,11 @@ function CreateNewProfileComponent() {
         <form  className='CNPForm'>
             <label className='CNPLabel'>
                 <div className='CNPLabelName'> Profile Visible (Landing Page):</div>
-                <input type="text" />
+                <input type="radio" />
             </label >
             <label className='CNPLabel'>
                 <div className='CNPLabelName'> First Name:</div>
-                <input type="text" onChange={ e => setName(e.target.value)} />
+                <input type="text" onChange={ e => setName(e.target.value)} value='name'/>
             </label>
             <label className='CNPLabel'>
                 <div className='CNPLabelName'> Last Name:</div>
@@ -109,7 +136,7 @@ function CreateNewProfileComponent() {
             Rating (fide.com)
             <label className='CNPLabel'>
                 <div className='CNPLabelName'> Actual Rating Std</div>
-                <input type="text" />
+                <input type="text" onChange={ e => setActualRatingStdChess(e.target.value)}/>
             </label>
             <label className='CNPLabel'>
                 <div className='CNPLabelName'> Actual Rating Rapid:</div>                
@@ -120,27 +147,27 @@ function CreateNewProfileComponent() {
                 <input type="text" />
             </label>
             <label className='CNPLabel'>
-                <div className='CNPLabelName'> Top Rating Std:</div>                
+                <div className='CNPLabelName'> The highest ranking Std:</div>                
                 <input type="text" />
             </label>
             <label className='CNPLabel'>
-                <div className='CNPLabelName'> Top Rating Std Year:</div>                
+                <div className='CNPLabelName'> Year:</div>                
                 <input type="text" />
             </label>
             <label className='CNPLabel'>
-                <div className='CNPLabelName'> Top Rating Rapid:</div>                
+                <div className='CNPLabelName'> The highest ranking Rapid:</div>                
                 <input type="text" />
             </label>
             <label className='CNPLabel'>
-                <div className='CNPLabelName'> Top Rating Rapid Year:</div>                
+                <div className='CNPLabelName'> Year:</div>                
                 <input type="text" />
             </label>
             <label className='CNPLabel'>
-                <div className='CNPLabelName'> Top Rating Blitz:</div>                
+                <div className='CNPLabelName'> The highest ranking Blitz:</div>                
                 <input type="text" />
             </label>
             <label className='CNPLabel'>
-                <div className='CNPLabelName'> Top Rating Blitz Year:</div>                
+                <div className='CNPLabelName'> Year:</div>                
                 <input type="text" />
             </label>
             
