@@ -10,6 +10,12 @@ import { refreshAccessToken } from '../../services/user-services'
 // css
 import './CreateNewProfileComponent.css'
 
+// mui
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+
 function CreateNewProfileComponent() {
 
     // temporary button colors
@@ -80,7 +86,7 @@ function CreateNewProfileComponent() {
     // const [aboutMe, setAboutMe] = useState('')
     const [messageToSMC, setMessageToSMC] = useState('')
     
-    console.log(actualRatingBlitzChess)
+    console.log(chessTitile)
 
      // function for create new profile
     const handleSubmit = async e => {
@@ -105,7 +111,7 @@ function CreateNewProfileComponent() {
                     const createData = new FormData()
 
                     const defaultChessProfile = {
-                        "chess_title":"GM",                        
+                        "chess_title":chessTitile,                        
                         "actual_rating":actualRatingStdChess,
                         "actual_ratingRapid":actualRatingRapidChess,
                         "actual_ratingBlitz":actualRatingBlitzChess,
@@ -131,12 +137,25 @@ function CreateNewProfileComponent() {
                         "fmjd.org":fmjd,                      
                     }
 
+                    const socialMedia = {
+                        "facebook":FB, 
+                        "instagram":instagram,
+                        "twitter":twitter,
+                        "tiktok":tiktok,
+                        "yt":yt,                     
+                    }
+
                     // we add all fields to FormData like that:
                     createData.append('user',authData.id)
                     createData.append('first_name',name)
                     createData.append('last_name',lastName)
                     createData.append('avatar',avatar)
                     createData.append('slug',slug)
+                    createData.append('successes',successes)
+                    createData.append('teachingExperience',experience)
+                    createData.append('description',description)
+                    createData.append('hidden_message',messageToSMC)
+
                     if (chessInstructor) {
                         createData.append('chess_profile',JSON.stringify(defaultChessProfile))
                         createData.append('profileType','2') // 2 is chess instructor ID
@@ -149,7 +168,9 @@ function CreateNewProfileComponent() {
                         createData.append('profileType','3') //  is checkers instructor ID
                     } else {
                         createData.append('checkers_profile',JSON.stringify({}))
-                    }
+                    }                    
+
+                    createData.append('socials',JSON.stringify(socialMedia))
                     
 
                     // we call CreateNewProfile function and paste token + data
@@ -233,6 +254,24 @@ function CreateNewProfileComponent() {
                         <div className='CNPLabelName'> Chess Titile:</div>
                         <input type="text" />
                     </label>
+                    <div className='CNPSelectTitle'>
+                        <FormControl fullWidth>
+                            <InputLabel id="demo-simple-select-label">Chess Title</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={chessTitile}
+                                // label="Chess Title"
+                                onChange={e => setChessTitle(e.target.value)}
+                                fullWidth
+                                >
+                                <MenuItem value={"None"}>None</MenuItem>
+                                <MenuItem value={"Grandmaster"}>Grandmaster</MenuItem>
+                                <MenuItem value={"FM"}>FM</MenuItem>
+                                <MenuItem value={"IM"}>IM</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </div>
                     Rating (fide.com)
                     <label className='CNPLabel'>
                         <div className='CNPLabelName'> Actual Rating Std</div>
@@ -350,26 +389,26 @@ function CreateNewProfileComponent() {
             </label>
 
 
-
-            <label className='CNPLabel'>
-                <div className='CNPLabelName'> Description:</div>                
-                <textarea rows='5' cols="50" value='' onChange={ e => setDescription(e.target.value)}>description </textarea>
-            </label>
+            <div className='CNPBreakSpace'>Profile description</div>
             <label className='CNPLabel'>
                 <div className='CNPLabelName'> Successes:</div>                
-                <textarea rows='5' cols="50" value=''onChange={ e => setSuccesses(e.target.value)}> </textarea>
+                <textarea rows='5' cols="50" onChange={ e => setSuccesses(e.target.value)}> </textarea>
             </label>
             <label className='CNPLabel'>
                 <div className='CNPLabelName'> Teaching Experience:</div>                
-                <textarea rows='5' cols="50" value=''onChange={ e => setexperience(e.target.value)}> </textarea>
+                <textarea rows='5' cols="50" onChange={ e => setexperience(e.target.value)}> </textarea>
             </label>
-            <label className='CNPLabel'>
+            {/* <label className='CNPLabel'>
                 <div className='CNPLabelName'> About Me:</div>                
                 <textarea rows='5' cols="50" value=''onChange={ e => setAboutMe(e.target.value)}> </textarea>
+            </label> */}
+            <label className='CNPLabel'>
+                <div className='CNPLabelName'> Description:</div>                
+                <textarea rows='5' cols="50"  onChange={ e => setDescription(e.target.value)}> </textarea>
             </label>
             <label className='CNPLabel'>
                 <div className='CNPLabelName'> Message to SMC (optional):</div>                
-                <textarea rows='5' cols="50" value=''onChange={ e => setMessageToSMC(e.target.value)}> </textarea>
+                <textarea rows='5' cols="50" onChange={ e => setMessageToSMC(e.target.value)}> </textarea>
             </label>
         </form>
 
