@@ -12,8 +12,19 @@ import './CreateNewProfileComponent.css'
 
 function CreateNewProfileComponent() {
 
+    // temporary button colors
+    const activeButtonColor = 'lightblue'
+    const notActiveButtonColor = '#FCFCFC'
+
     // useStates for context
     const {authData,setAuth} =useAuth()
+
+    // useStates for profile
+    const [chessInstructor, setChessInstructor] = useState(true)
+    const [chessInstructorStyle, setChessInstructorStyle] = useState(activeButtonColor)
+
+    const [draughtsInstructor, setDraughtsInstructor] = useState(false)
+    const [draughtsInstructorStyle, setDraughtsInstructorStyle] = useState(notActiveButtonColor)
 
     // useStates for form
     const [isVisible, setIsVisible] = useState(false) // visible on all instructors page
@@ -56,7 +67,7 @@ function CreateNewProfileComponent() {
     const [chess_com, setChess_com] = useState('')
     const [lichess, setLichess] = useState('')
 
-    // social checkets
+    // social checkers
     const [fmjd, setFmjd] = useState('')
 
     // other for later
@@ -87,7 +98,6 @@ function CreateNewProfileComponent() {
 
                 setAuth(null)
                 navigateHome()
-
              
             } else {
  
@@ -123,10 +133,24 @@ function CreateNewProfileComponent() {
 
                     // we add all fields to FormData like that:
                     createData.append('user',authData.id)
+                    createData.append('first_name',name)
+                    createData.append('last_name',lastName)
                     createData.append('avatar',avatar)
                     createData.append('slug',slug)
-                    createData.append('chess_profile',JSON.stringify(defaultChessProfile))
-                    createData.append('checkers_profile',JSON.stringify(defaultCheckersProfile))
+                    if (chessInstructor) {
+                        createData.append('chess_profile',JSON.stringify(defaultChessProfile))
+                        createData.append('profileType','2') // 2 is chess instructor ID
+                    } else {
+                        createData.append('chess_profile',JSON.stringify({}))
+                    }
+                    
+                    if (draughtsInstructor) {
+                        createData.append('checkers_profile',JSON.stringify(defaultCheckersProfile))
+                        createData.append('profileType','3') //  is checkers instructor ID
+                    } else {
+                        createData.append('checkers_profile',JSON.stringify({}))
+                    }
+                    
 
                     // we call CreateNewProfile function and paste token + data
                     const data = await CreateNewProfile( 
@@ -142,16 +166,34 @@ function CreateNewProfileComponent() {
         }
     }
 
+    function ChangeActiveProfile(profile) {
+
+        if (profile === 'chess') {
+            
+            setChessInstructor(true)
+            setChessInstructorStyle(activeButtonColor)
+            setDraughtsInstructor(false)
+            setDraughtsInstructorStyle(notActiveButtonColor)
+
+        } else if (profile === 'checkers') {
+            setChessInstructor(false)
+            setChessInstructorStyle(notActiveButtonColor)
+            setDraughtsInstructor(true)
+            setDraughtsInstructorStyle(activeButtonColor)
+        } else {
+            console.log('something wrong')
+        }
+    }
+
   return (
     <div className='CNPContainer'>
-        CreateNewProfileComponent
+        Create a new Sharp Mind Profile
         <div>
-            <button>Chess Instructor</button>
-            <button>Draughts Instructor</button>
-            <button>Academy/Club</button>
+            <button onClick={()=> ChangeActiveProfile('chess')} style={{backgroundColor:chessInstructorStyle}}>Chess Instructor</button>
+            <button onClick={()=> ChangeActiveProfile('checkers')} style={{backgroundColor:draughtsInstructorStyle}} >Draughts Instructor</button>
+            <button disabled={true}>Academy/Club</button>
         </div>
-        <button onClick={()=>handleSubmit()}> Create New Profile</button>
-        
+
         {/* form for creating profile */}
         <form  className='CNPForm'>
             {/* <label className='CNPLabel'>
@@ -179,80 +221,113 @@ function CreateNewProfileComponent() {
                 <div className='CNPLabelName'> Country:</div>
                 <input type="text" />
             </label>
-            <label className='CNPLabel'>
-                <div className='CNPLabelName'> Chess Titile:</div>
-                <input type="text" />
-            </label>
-            Rating (fide.com)
-            <label className='CNPLabel'>
-                <div className='CNPLabelName'> Actual Rating Std</div>
-                <input type="text" onChange={ e => setActualRatingStdChess(e.target.value)}/>
-            </label>
-            <label className='CNPLabel'>
-                <div className='CNPLabelName'> Actual Rating Rapid:</div>                
-                <input type="text" onChange={ e => setActualRatingRapidChess(e.target.value)}/>
-            </label>
-            <label className='CNPLabel'>
-                <div className='CNPLabelName'> Actual Rating Blitz:</div>                
-                <input type="text" onChange={ e => setActualRatingBlitzChess(e.target.value)}/>
-            </label>
-            <label className='CNPLabel'>
-                <div className='CNPLabelName'> The highest ranking Std:</div>                
-                <input type="text" onChange={ e => setTopRatingStdChess(e.target.value)}/>
-            </label>
-            <label className='CNPLabel'>
-                <div className='CNPLabelName'> Year:</div>                
-                <input type="text" onChange={ e => setTopRatingStdChessYear(e.target.value)}/>
-            </label>
-            <label className='CNPLabel'>
-                <div className='CNPLabelName'> The highest ranking Rapid:</div>                
-                <input type="text" onChange={ e => setTopRatingRapidChess(e.target.value)}/>
-            </label>
-            <label className='CNPLabel'>
-                <div className='CNPLabelName'> Year:</div>                
-                <input type="text" onChange={ e => setTopRatingRapidChessYear(e.target.value)}/>
-            </label>
-            <label className='CNPLabel'>
-                <div className='CNPLabelName'> The highest ranking Blitz:</div>                
-                <input type="text" onChange={ e => setTopRatingBlitzChess(e.target.value)}/>
-            </label>
-            <label className='CNPLabel'>
-                <div className='CNPLabelName'> Year:</div>                
-                <input type="text" onChange={ e => setTopRatingBlitzChessYear(e.target.value)}/>
-            </label>
-            
-            {/* checkers rating  */}
-            <label className='CNPLabel'>
-                <div className='CNPLabelName'> Draughts Title:</div>
-                <input type="text" />
-            </label>
-            Rating (fmjd.org)
-            <label className='CNPLabel'>
-                <div className='CNPLabelName'> Actual Rating Classic</div>
-                <input type="text" onChange={ e => setActualRatingStdCheckers(e.target.value)}/>
-            </label>
-            <label className='CNPLabel'>
-                <div className='CNPLabelName'> Actual Rating Blitz:</div>                
-                <input type="text" onChange={ e => setActualRatingBlitzCheckers(e.target.value)}/>
-            </label>
-            <label className='CNPLabel'>
-                <div className='CNPLabelName'> Top Rating Classic:</div>                
-                <input type="text" onChange={ e => setTopRatingStdCheckers(e.target.value)}/>
-            </label>
-            <label className='CNPLabel'>
-                <div className='CNPLabelName'> Top Rating Classic Year:</div>                
-                <input type="text" onChange={ e => setTopRatingStdCheckersYear(e.target.value)}/>
-            </label>
-            <label className='CNPLabel'>
-                <div className='CNPLabelName'> Top Rating Blitz:</div>                
-                <input type="text" onChange={ e => setTopRatingBlitzCheckers(e.target.value)}/>
-            </label>
-            <label className='CNPLabel'>
-                <div className='CNPLabelName'> Top Rating Blitz Year:</div>                
-                <input type="text" onChange={ e => setTopRatingBlitzCheckersYear(e.target.value)}/>
-            </label>
+            {/* <label className='CNPLabel'>
+                <div className='CNPLabelName'> Languages:</div>                
+                <input type="text" onChange={ e => setLanguages(e.target.value)}/>
+            </label> */}
 
-            Socials
+            {chessInstructor ? 
+                <> 
+                    <div className='CNPBreakSpace'>Chess player profile:</div>
+                    <label className='CNPLabel'>
+                        <div className='CNPLabelName'> Chess Titile:</div>
+                        <input type="text" />
+                    </label>
+                    Rating (fide.com)
+                    <label className='CNPLabel'>
+                        <div className='CNPLabelName'> Actual Rating Std</div>
+                        <input type="text" onChange={ e => setActualRatingStdChess(e.target.value)}/>
+                    </label>
+                    <label className='CNPLabel'>
+                        <div className='CNPLabelName'> Actual Rating Rapid:</div>                
+                        <input type="text" onChange={ e => setActualRatingRapidChess(e.target.value)}/>
+                    </label>
+                    <label className='CNPLabel'>
+                        <div className='CNPLabelName'> Actual Rating Blitz:</div>                
+                        <input type="text" onChange={ e => setActualRatingBlitzChess(e.target.value)}/>
+                    </label>
+                    <label className='CNPLabel'>
+                        <div className='CNPLabelName'> The highest ranking Std:</div>                
+                        <input type="text" onChange={ e => setTopRatingStdChess(e.target.value)}/>
+                    </label>
+                    <label className='CNPLabel'>
+                        <div className='CNPLabelName'> Year:</div>                
+                        <input type="text" onChange={ e => setTopRatingStdChessYear(e.target.value)}/>
+                    </label>
+                    <label className='CNPLabel'>
+                        <div className='CNPLabelName'> The highest ranking Rapid:</div>                
+                        <input type="text" onChange={ e => setTopRatingRapidChess(e.target.value)}/>
+                    </label>
+                    <label className='CNPLabel'>
+                        <div className='CNPLabelName'> Year:</div>                
+                        <input type="text" onChange={ e => setTopRatingRapidChessYear(e.target.value)}/>
+                    </label>
+                    <label className='CNPLabel'>
+                        <div className='CNPLabelName'> The highest ranking Blitz:</div>                
+                        <input type="text" onChange={ e => setTopRatingBlitzChess(e.target.value)}/>
+                    </label>
+                    <label className='CNPLabel'>
+                        <div className='CNPLabelName'> Year:</div>                
+                        <input type="text" onChange={ e => setTopRatingBlitzChessYear(e.target.value)}/>
+                    </label>
+                    <label className='CNPLabel'>
+                    <div className='CNPLabelName'> Fide.com:</div>                
+                    <input type="text" onChange={ e => setFide(e.target.value)}/>
+                    </label>
+                    <label className='CNPLabel'>
+                        <div className='CNPLabelName'> Chess.com:</div>                
+                        <input type="text" onChange={ e => setChess_com(e.target.value)}/>
+                    </label>
+                    <label className='CNPLabel'>
+                        <div className='CNPLabelName'> Lichess.org:</div>                
+                        <input type="text" onChange={ e => setLichess(e.target.value)}/>
+                    </label>
+                </>
+            : <div></div>}
+
+
+            {/* checkers rating  */}
+            {draughtsInstructor ? 
+                <>
+                    <div className='CNPBreakSpace'>Draughts player profile:</div>
+                    <label className='CNPLabel'>
+                        <div className='CNPLabelName'> Draughts Title:</div>
+                        <input type="text" />
+                    </label>
+                    Rating (fmjd.org)
+                    <label className='CNPLabel'>
+                        <div className='CNPLabelName'> Actual Rating Classic</div>
+                        <input type="text" onChange={ e => setActualRatingStdCheckers(e.target.value)}/>
+                    </label>
+                    <label className='CNPLabel'>
+                        <div className='CNPLabelName'> Actual Rating Blitz:</div>                
+                        <input type="text" onChange={ e => setActualRatingBlitzCheckers(e.target.value)}/>
+                    </label>
+                    <label className='CNPLabel'>
+                        <div className='CNPLabelName'> Top Rating Classic:</div>                
+                        <input type="text" onChange={ e => setTopRatingStdCheckers(e.target.value)}/>
+                    </label>
+                    <label className='CNPLabel'>
+                        <div className='CNPLabelName'> Top Rating Classic Year:</div>                
+                        <input type="text" onChange={ e => setTopRatingStdCheckersYear(e.target.value)}/>
+                    </label>
+                    <label className='CNPLabel'>
+                        <div className='CNPLabelName'> Top Rating Blitz:</div>                
+                        <input type="text" onChange={ e => setTopRatingBlitzCheckers(e.target.value)}/>
+                    </label>
+                    <label className='CNPLabel'>
+                        <div className='CNPLabelName'> Top Rating Blitz Year:</div>                
+                        <input type="text" onChange={ e => setTopRatingBlitzCheckersYear(e.target.value)}/>
+                    </label>
+                    <label className='CNPLabel'>
+                        <div className='CNPLabelName'> fmjd.org:</div>                
+                        <input type="text" onChange={ e => setFmjd(e.target.value)}/>
+                    </label>
+                </>
+            : <div></div>
+            }
+
+            <div className='CNPBreakSpace'>Social Media </div>
             <label className='CNPLabel'>
                 <div className='CNPLabelName'> Facebook</div>                
                 <input type="text" onChange={ e => setFB(e.target.value)}/>
@@ -273,26 +348,9 @@ function CreateNewProfileComponent() {
                 <div className='CNPLabelName'> Tiktok</div>                
                 <input type="text" onChange={ e => setTiktok(e.target.value)}/>
             </label>
-            <label className='CNPLabel'>
-                <div className='CNPLabelName'> Fide.com:</div>                
-                <input type="text" onChange={ e => setFide(e.target.value)}/>
-            </label>
-            <label className='CNPLabel'>
-                <div className='CNPLabelName'> Chess.com:</div>                
-                <input type="text" onChange={ e => setChess_com(e.target.value)}/>
-            </label>
-            <label className='CNPLabel'>
-                <div className='CNPLabelName'> Lichess.org:</div>                
-                <input type="text" onChange={ e => setLichess(e.target.value)}/>
-            </label>
-            <label className='CNPLabel'>
-                <div className='CNPLabelName'> fmjd.org:</div>                
-                <input type="text" onChange={ e => setFmjd(e.target.value)}/>
-            </label>
-            <label className='CNPLabel'>
-                <div className='CNPLabelName'> Languages:</div>                
-                <input type="text" onChange={ e => setLanguages(e.target.value)}/>
-            </label>
+
+
+
             <label className='CNPLabel'>
                 <div className='CNPLabelName'> Description:</div>                
                 <textarea rows='5' cols="50" value='' onChange={ e => setDescription(e.target.value)}>description </textarea>
@@ -313,18 +371,10 @@ function CreateNewProfileComponent() {
                 <div className='CNPLabelName'> Message to SMC (optional):</div>                
                 <textarea rows='5' cols="50" value=''onChange={ e => setMessageToSMC(e.target.value)}> </textarea>
             </label>
-                           
-            
-            
-            {/* <label className='CNPLabel'>
-                <div className='CNPLabelName'> Message to SMC (optional):</div>                
-                <textarea rows='5' cols="50" value=''> </textarea>
-            </label> */}
-            
         </form>
-        fdsnsdjknk
-        <button onClick={()=>handleSubmit()}> create</button>
-        <label> d</label>
+
+        <div> By clicking Create New Profile you agree to the Terms and Conditions </div>
+        <button onClick={()=>handleSubmit()} className='createProfileButton'> Create New Profile</button>
     </div>
   )
 }
