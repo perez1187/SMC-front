@@ -1,3 +1,7 @@
+.CNPContainer{
+    margin-left: 5%;
+}
+
 .CNPForm{
     display: flex;
     flex-direction: column;
