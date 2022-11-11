@@ -16,6 +16,9 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 
+// import country list 
+import { CountryList } from '../../assets/contryList';
+
 function CreateNewProfileComponent() {
 
     // temporary button colors
@@ -38,10 +41,10 @@ function CreateNewProfileComponent() {
     const [lastName, setLastName] = useState('')
     const [slug,setSlug] = useState('') // profilename
     const [avatar, setAvatar] = useState()
-    const [country, setCountry] = useState('')
+    const [country, setCountry] = useState("ad")
 
     // chess
-    const [chessTitile, setChessTitle] = useState('')
+    const [chessTitile, setChessTitle] = useState("None")
     const [actualRatingStdChess, setActualRatingStdChess] = useState('')
     const [actualRatingRapidChess, setActualRatingRapidChess] = useState('')
     const [actualRatingBlitzChess, setActualRatingBlitzChess] = useState('')
@@ -53,7 +56,7 @@ function CreateNewProfileComponent() {
     const [topRatingBlitzChessYear, setTopRatingBlitzChessYear] = useState('')
 
     // checkers
-    const [checkersTitile, setCheckersTitle] = useState('')
+    const [checkersTitile, setCheckersTitle] = useState("None")
     const [actualRatingStdCheckers, setActualRatingStdCheckers] = useState('')
     const [actualRatingBlitzCheckers, setActualRatingBlitzCheckers] = useState('')
     const [topRatingStdCheckers, setTopRatingStdCheckers] = useState('')
@@ -127,7 +130,7 @@ function CreateNewProfileComponent() {
                     }
 
                     const defaultCheckersProfile = {
-                        "draughts_title":"GM",                        
+                        "draughts_title":checkersTitile,                        
                         "actual_rating":actualRatingStdCheckers,
                         "actual_ratingBlitz":actualRatingBlitzCheckers,
                         "top_rating":topRatingStdCheckers,
@@ -149,6 +152,7 @@ function CreateNewProfileComponent() {
                     createData.append('user',authData.id)
                     createData.append('first_name',name)
                     createData.append('last_name',lastName)
+                    createData.append('country',country)
                     createData.append('avatar',avatar)
                     createData.append('slug',slug)
                     createData.append('successes',successes)
@@ -206,6 +210,16 @@ function CreateNewProfileComponent() {
         }
     }
 
+    // country List [and states]
+    const list = Object.entries(CountryList).map(
+        ([key, value]) => {
+        return (
+            <MenuItem value={key}>{value}</MenuItem>
+        )
+        
+    }
+    )
+
   return (
     <div className='CNPContainer'>
         Create a new Sharp Mind Profile
@@ -240,7 +254,21 @@ function CreateNewProfileComponent() {
             </label>
             <label className='CNPLabel'>
                 <div className='CNPLabelName'> Country:</div>
-                <input type="text" />
+                <div className='CNPSelectTitle'>
+                        <FormControl fullWidth>
+                            {/* <InputLabel id="demo-simple-select-label">Chess Title</InputLabel> */}
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={country}
+                                // label="Chess Title"
+                                onChange={e => setCountry(e.target.value)}
+                                fullWidth
+                                >
+                                    {list}
+                            </Select>
+                        </FormControl>
+                        </div>
             </label>
             {/* <label className='CNPLabel'>
                 <div className='CNPLabelName'> Languages:</div>                
@@ -252,11 +280,9 @@ function CreateNewProfileComponent() {
                     <div className='CNPBreakSpace'>Chess player profile:</div>
                     <label className='CNPLabel'>
                         <div className='CNPLabelName'> Chess Titile:</div>
-                        <input type="text" />
-                    </label>
-                    <div className='CNPSelectTitle'>
+                        <div className='CNPSelectTitle'>
                         <FormControl fullWidth>
-                            <InputLabel id="demo-simple-select-label">Chess Title</InputLabel>
+                            {/* <InputLabel id="demo-simple-select-label">Chess Title</InputLabel> */}
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
@@ -266,12 +292,19 @@ function CreateNewProfileComponent() {
                                 fullWidth
                                 >
                                 <MenuItem value={"None"}>None</MenuItem>
-                                <MenuItem value={"Grandmaster"}>Grandmaster</MenuItem>
-                                <MenuItem value={"FM"}>FM</MenuItem>
-                                <MenuItem value={"IM"}>IM</MenuItem>
+                                <MenuItem value={"Grandmaster (GM)"}>Grandmaster (GM)</MenuItem>
+                                <MenuItem value={"Woman Grandmaster (WGM)"}>Woman Grandmaster (WGM)</MenuItem>
+                                <MenuItem value={"International Master (IM)"}>International Master (IM)</MenuItem>
+                                <MenuItem value={"Woman International Master (WIM)"}>Woman International Master (WIM)</MenuItem>
+                                <MenuItem value={"FIDE Master (FM)"}>FIDE Master (FM)</MenuItem>
+                                <MenuItem value={"Woman FIDE Master (WFM)"}>Woman FIDE Master (WFM)</MenuItem>
+                                <MenuItem value={"Candidate Master (CM)"}>Candidate Master (CM)</MenuItem>
+                                <MenuItem value={"Woman Candidate Master (WCM)"}>Woman Candidate Master (WCM)</MenuItem>
                             </Select>
                         </FormControl>
-                    </div>
+                        </div>
+                    </label>
+
                     Rating (fide.com)
                     <label className='CNPLabel'>
                         <div className='CNPLabelName'> Actual Rating Std</div>
@@ -331,7 +364,32 @@ function CreateNewProfileComponent() {
                     <div className='CNPBreakSpace'>Draughts player profile:</div>
                     <label className='CNPLabel'>
                         <div className='CNPLabelName'> Draughts Title:</div>
-                        <input type="text" />
+                        <div className='CNPSelectTitle'>
+                            <FormControl fullWidth>
+                                {/* <InputLabel id="demo-simple-select-label">Chess Title</InputLabel> */}
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={checkersTitile}
+                                    // label="Chess Title"
+                                    onChange={e => setCheckersTitle(e.target.value)}
+                                    fullWidth
+                                    >
+                                    <MenuItem value={"None"}>None</MenuItem>
+                                    <MenuItem value={"International Grandmaster (GMI)"}>International Grandmaster (GMI)</MenuItem>
+                                    <MenuItem value={"Woman International Grandmaster (GMIF))"}>Woman International Grandmaster (GMIF))</MenuItem>
+                                    <MenuItem value={"National Grandmaster (GMN)"}>National Grandmaster (GMN)</MenuItem>
+                                    <MenuItem value={"International Master (MI)"}>International Master (MI)</MenuItem>
+                                    <MenuItem value={"Woman International Master (MIF)"}>Woman International Master (MIF)</MenuItem>
+                                    <MenuItem value={"FMJD Master (MF)"}>FMJD Master (MF)</MenuItem>
+                                    <MenuItem value={"Woman FMJD Master (MFF)"}>Woman FMJD Master (MFF)</MenuItem>
+                                    <MenuItem value={"National Master (MN)"}>National Master (MN)</MenuItem>
+                                    <MenuItem value={"Woman National Master (MNF)"}>Woman National Master (MNF)</MenuItem>
+                                    <MenuItem value={"Candidate National Master (cMN)"}>Candidate National Master (cMN)</MenuItem>
+                                    <MenuItem value={"Woman Candidate National Master (cMNF)"}>Woman Candidate National Master (cMNF)</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </div>
                     </label>
                     Rating (fmjd.org)
                     <label className='CNPLabel'>

@@ -32,3 +32,20 @@ export function CreateNewProfile(accessToken,data) {
         console.log(e)
     })
 }    
+
+
+
+
+// export function fetchCountry() {
+//     return fetch('https://flagcdn.com/en/codes.json', {
+//         method: 'GET',
+//         headers: {
+//             'Content-Type': 'application/json',          
+//         },
+//         // body: JSON.stringify({'email':'email', 'password': 'password'})
+//     }
+//     ).then(resp => resp.json())
+//     .catch( e => {
+//         console.log(e)
+//     })
+//     }

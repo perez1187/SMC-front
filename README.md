@@ -7,3 +7,4 @@ cuntry flag api:
 https://flagpedia.net/download/api
 
 draughts tiltes
+https://lidraughts.org/faq#titles

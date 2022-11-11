@@ -8,6 +8,9 @@ import {useAuth} from '../../hooks/useAuth'
 import { refreshAccessToken } from '../../services/user-services'
 import { fetchUserProfiles } from '../../services/profile-services'
 
+// import country list 
+import { CountryList } from '../../assets/contryList';
+
 export default function UserProfilesComponent() {
     
     // useStates for context
@@ -65,10 +68,33 @@ export default function UserProfilesComponent() {
                 // we need to send info to user that he needs to login
             }
             
+
         }
         getUserProfileData()
       
     },[])
+
+    // that was for testing:
+
+    // console.log( Object.entries(CountryList).map(
+    //     ([key, value]) => `My key is ${key} and my value is ${value}`
+    // ))
+
+    // function RenderCountryList () {
+    //     const list = Object.entries(CountryList).map(
+    //         ([key, value]) => {
+    //         return (
+    //             <div> My key is {key} and my value is {value}</div>
+    //         )
+            
+    //     }
+    //     )
+    //     return (
+    //         <div>
+    //             {list}
+    //         </div>
+    //     )
+    // }
 
     function RenderProfiles(){
         // const testProf = fetchedUserProfilesData.filter()
@@ -95,6 +121,7 @@ export default function UserProfilesComponent() {
         Your Profiles 
         <button onClick={()=> navigateCreatePage()}> create profile</button>
         <div>{RenderProfiles()} </div>
+        {/* <div>{RenderCountryList()}</div> */}
     </div>
   )
 }
