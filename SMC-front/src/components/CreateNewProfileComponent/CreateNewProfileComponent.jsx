@@ -25,6 +25,10 @@ function CreateNewProfileComponent() {
     const activeButtonColor = 'lightblue'
     const notActiveButtonColor = '#FCFCFC'
 
+    // usestate for error
+    const [error, setError] = useState(false)
+    const [errorMessage, setErrorMessage] = useState('')
+
     // useStates for context
     const {authData,setAuth} =useAuth()
 
@@ -95,6 +99,9 @@ function CreateNewProfileComponent() {
     const handleSubmit = async e => {
         // e.preventDefault() // we are not going to refresh the page
         // console.log("wszedlem")
+        if (slug == '') {
+            setErrorMessage('Profile Name cannot be empty')
+        }
         if (authData) {
             
             // first we create new access token
@@ -183,6 +190,12 @@ function CreateNewProfileComponent() {
                         createData
                     ) 
                     console.log(data)
+                    console.log(data.avatar)
+                    if (data.avatar == 'The submitted data was not a file. Check the encoding type on the form.') {
+                        setErrorMessage(' You need to add avatar')
+                    } else if (data.slug == 'profile_owner with this slug already exists.') {
+                        setErrorMessage('The Profile Name already exist')
+                    }
                 }
             }
         else {
@@ -214,7 +227,7 @@ function CreateNewProfileComponent() {
     const list = Object.entries(CountryList).map(
         ([key, value]) => {
         return (
-            <MenuItem value={key}>{value}</MenuItem>
+            <MenuItem value={key} style={{ textTransform: 'uppercase'}}>{key} - {value}</MenuItem>
         )
         
     }
@@ -264,6 +277,7 @@ function CreateNewProfileComponent() {
                                 // label="Chess Title"
                                 onChange={e => setCountry(e.target.value)}
                                 fullWidth
+                                style={{ textTransform: 'uppercase'}}
                                 >
                                     {list}
                             </Select>
@@ -471,6 +485,7 @@ function CreateNewProfileComponent() {
         </form>
 
         <div> By clicking Create New Profile you agree to the Terms and Conditions </div>
+        <div className='CNPError'>{errorMessage}</div>
         <button onClick={()=>handleSubmit()} className='createProfileButton'> Create New Profile</button>
     </div>
   )

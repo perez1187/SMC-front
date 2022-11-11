@@ -96,6 +96,20 @@ export default function UserProfilesComponent() {
     //     )
     // }
 
+    // that works for keys
+    // const sortable = Object.entries(CountryList)
+    //     .sort(([,a],[,b]) => a-b)
+    //     .reduce((r, [k, v]) => ({ ...r, [k]: v }), {});
+
+    // console.log(sortable);
+
+    const sortable = Object.fromEntries(
+        Object.entries(CountryList).sort(([,a],[,b]) => a-b)
+    );
+    
+    console.log(sortable);
+
+
     function RenderProfiles(){
         // const testProf = fetchedUserProfilesData.filter()
         const listProfiles = fetchedUserProfilesData.map(
