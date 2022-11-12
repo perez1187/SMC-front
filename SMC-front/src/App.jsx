@@ -14,7 +14,7 @@ import InstructorsPage from './pages/InstructorsPage';
 // pages
 import ContactPage from './pages/ContactPage';
 import LoginPage from './pages/LoginPage';
-import LandingPage from './pages/LandingPage';
+import LandingPage from './pages/LandingPage/LandingPage.jsx';
 import RegisterPage from './pages/RegisterPage';
 import ActivatePage from './pages/ActivatePage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
